@@ -1,7 +1,6 @@
 package com.ufcg.es.healthtrack.service;
 
-import com.ufcg.es.healthtrack.exception.DataMedicaoJaCadastradaException;
-import com.ufcg.es.healthtrack.exception.ExameNaoEncontradoException;
+import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.model.Usuario;
 import com.ufcg.es.healthtrack.model.dto.GlicemiaDTO;
 import com.ufcg.es.healthtrack.model.exame.Glicemia;
@@ -34,7 +33,7 @@ public class GlicemiaService {
     public GlicemiaDTO getExamePorData(LocalDateTime dataMedicao, Usuario usuario) {
         Optional<Glicemia> optGlicemia = this.repository.findByDataMedicaoAndUsuario(dataMedicao,usuario);
         if(optGlicemia.isEmpty()) {
-            throw new ExameNaoEncontradoException("O exame informado não foi encontrado.");
+            throw new HealthTrackSystemException("O exame informado não foi encontrado.");
         }
         return transformaParaDTO(optGlicemia.get());
     }
@@ -55,7 +54,7 @@ public class GlicemiaService {
     private void verificaDataMedicao(LocalDateTime dataMedicao, Usuario usuario){
         Optional<Glicemia> optGlicemia = this.repository.findByDataMedicaoAndUsuario(dataMedicao,usuario);
         if(optGlicemia.isPresent()) {
-            throw new DataMedicaoJaCadastradaException("Já existe uma medição de glicemia no momento informado");
+            throw new HealthTrackSystemException("Já existe uma medição de glicemia no momento informado");
         }
     }
 

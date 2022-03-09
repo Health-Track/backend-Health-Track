@@ -1,5 +1,6 @@
 package com.ufcg.es.healthtrack.service;
 
+import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.model.Usuario;
 import com.ufcg.es.healthtrack.model.dto.UsuarioDTO;
 import com.ufcg.es.healthtrack.repository.UsuarioRepository;
@@ -7,7 +8,6 @@ import com.ufcg.es.healthtrack.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,9 +22,12 @@ public class UsuarioService {
         this.repository.save(geraUsuario(usuarioDTO));
     }
 
-    public Usuario getUsuario(String email) {
-        //TODO verificar se o usuario existe antes de retornar
-        return repository.findById(email).get();
+    public Usuario getUsuario(String email){
+        if(usuarioExiste(email)) {
+            return repository.findById(email).get();
+        } else {
+            throw new HealthTrackSystemException("O usuário não existe");
+        }
     }
 
     private void verificaDadosUsuarioDTO(UsuarioDTO usuarioDTO) {

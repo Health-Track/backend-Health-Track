@@ -1,9 +1,9 @@
 package com.ufcg.es.healthtrack.service;
 
+import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.filter.JWTFilter;
 import com.ufcg.es.healthtrack.model.dto.Credenciais;
 import com.ufcg.es.healthtrack.model.dto.LoginResponse;
-import com.ufcg.es.healthtrack.exception.CredenciaisInvalidasException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
@@ -20,7 +20,7 @@ public class JWTService {
     @Autowired
     private UsuarioService usuarioService;
 
-    public LoginResponse autentica(Credenciais credenciais) throws CredenciaisInvalidasException{
+    public LoginResponse autentica(Credenciais credenciais) {
 
         validaUsuario(credenciais);
         String token = geraToken(credenciais);
@@ -33,7 +33,7 @@ public class JWTService {
 
     private void validaUsuario(Credenciais credenciais) {
         if (!this.usuarioService.validaUsuario(credenciais.getEmail(),credenciais.getSenha())){
-            throw new CredenciaisInvalidasException("Credenciais Inválidas.");
+            throw new HealthTrackSystemException("Credenciais Inválidas.");
         }
     }
 

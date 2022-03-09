@@ -1,7 +1,6 @@
 package com.ufcg.es.healthtrack.controller.exame;
 
-import com.ufcg.es.healthtrack.exception.DataMedicaoJaCadastradaException;
-import com.ufcg.es.healthtrack.exception.ExameNaoEncontradoException;
+import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.model.dto.ExceptionResponse;
 import com.ufcg.es.healthtrack.model.dto.GlicemiaDTO;
 import com.ufcg.es.healthtrack.service.ExameService;
@@ -27,7 +26,7 @@ public class GlicemiaController {
         try {
             this.exameService.cadastrarExameGlicemia(glicemiaDTO,getAuthorizationHeader(servletRequest));
             return new ResponseEntity(HttpStatus.CREATED);
-        } catch (DataMedicaoJaCadastradaException e) {
+        } catch (HealthTrackSystemException e) {
             return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.BAD_REQUEST);
         }
     }
@@ -41,7 +40,7 @@ public class GlicemiaController {
     public ResponseEntity visializarExame(@RequestBody LocalDateTime dataMedicao , ServletRequest servletRequest) {
         try {
             return new ResponseEntity<>(this.exameService.visializarExameGlicemia(dataMedicao,getAuthorizationHeader(servletRequest)), HttpStatus.OK);
-        } catch (ExameNaoEncontradoException e) {
+        } catch (HealthTrackSystemException e) {
             return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.NOT_FOUND);
         }
     }

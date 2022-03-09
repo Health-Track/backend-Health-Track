@@ -1,9 +1,9 @@
 package com.ufcg.es.healthtrack.exception;
 
-public class DataMedicaoJaCadastradaException extends RuntimeException {
+public class HealthTrackSystemException extends  RuntimeException {
     private static final long serialVersionUID = -2558524431457472634L;
 
-    public DataMedicaoJaCadastradaException(String msg) {
+    public HealthTrackSystemException(String msg) {
         super(msg);
     }
 }
