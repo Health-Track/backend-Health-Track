@@ -23,21 +23,20 @@ public class ExameService {
     private GlicemiaService glicemiaService;
 
     public void cadastrarExameGlicemia(GlicemiaDTO glicemiaDTO, String authorizationHeader) {
-        Glicemia glicemia = new Glicemia(getUsuarioLogado(authorizationHeader),
-                                            glicemiaDTO.getMedicao(),
-                                            glicemiaDTO.getDataMedicao());
-        this.glicemiaService.adicionarMedicao(glicemia);
+        Usuario usuario = getUsuarioLogado(authorizationHeader);
+        this.glicemiaService.adicionarMedicao(glicemiaDTO,usuario);
     }
-
 
     public List<GlicemiaDTO> listarTodosExamesGlicemia(String authorizationHeader) {
         return this.glicemiaService.listarTodosPorUsuario(getUsuarioLogado(authorizationHeader));
 
     }
 
-    public GlicemiaDTO getExameGlicemia(LocalDateTime dataMedicao, String authorizationHeader) {
+    public GlicemiaDTO visializarExameGlicemia(LocalDateTime dataMedicao, String authorizationHeader) {
         return this.glicemiaService.getExamePorData(dataMedicao,getUsuarioLogado(authorizationHeader));
     }
+
+
 
     private Usuario getUsuarioLogado(String authorizationHeader) {
         String emailUsuarioLogado = jwtService.getEmailUsuarioLogado(authorizationHeader);

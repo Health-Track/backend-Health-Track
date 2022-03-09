@@ -20,11 +20,11 @@ public class GlicemiaService {
     @Autowired
     private GlicemiaRepository repository;
 
-    public void adicionarMedicao(Glicemia glicemia) {
-        verificaDataMedicao(glicemia.getDataMedicao(),glicemia.getUsuario());
+    public void adicionarMedicao(GlicemiaDTO glicemiaDTO,Usuario usuario) {
+        verificaDataMedicao(glicemiaDTO.getDataMedicao(),usuario);
+        Glicemia glicemia = criarGlicemia(glicemiaDTO,usuario);
         this.repository.save(glicemia);
     }
-
 
     public List<GlicemiaDTO> listarTodosPorUsuario(Usuario usuarioLogado) {
         List<Glicemia> exames = this.repository.findAllByUsuario(usuarioLogado);
@@ -45,7 +45,6 @@ public class GlicemiaService {
         for(Glicemia exame: exames) {
             examesDTO.add(transformaParaDTO(exame));
         }
-
         return examesDTO;
     }
 
@@ -58,6 +57,10 @@ public class GlicemiaService {
         if(optGlicemia.isPresent()) {
             throw new DataMedicaoJaCadastradaException("Já existe uma medição de glicemia no momento informado");
         }
+    }
+
+    private Glicemia criarGlicemia(GlicemiaDTO glicemiaDTO,Usuario usuario) {
+        return new Glicemia(usuario, glicemiaDTO.getMedicao(), glicemiaDTO.getDataMedicao());
     }
 
 

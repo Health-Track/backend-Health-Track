@@ -37,12 +37,10 @@ public class GlicemiaController {
         return new ResponseEntity<List<GlicemiaDTO>>(this.exameService.listarTodosExamesGlicemia(getAuthorizationHeader(servletRequest)),HttpStatus.OK);
     }
 
-
-
     @GetMapping
-    public ResponseEntity getExame(@RequestBody LocalDateTime dataMedicao , ServletRequest servletRequest) {
+    public ResponseEntity visializarExame(@RequestBody LocalDateTime dataMedicao , ServletRequest servletRequest) {
         try {
-            return new ResponseEntity<>(this.exameService.getExameGlicemia(dataMedicao,getAuthorizationHeader(servletRequest)), HttpStatus.OK);
+            return new ResponseEntity<>(this.exameService.visializarExameGlicemia(dataMedicao,getAuthorizationHeader(servletRequest)), HttpStatus.OK);
         } catch (ExameNaoEncontradoException e) {
             return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.NOT_FOUND);
         }
