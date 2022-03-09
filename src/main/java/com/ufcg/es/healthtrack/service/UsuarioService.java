@@ -40,6 +40,18 @@ public class UsuarioService {
         Util.verificaFormatoSenha(usuarioDTO.getSenha());
     }
 
+
+    public boolean validaUsuario(String email, String senha) {
+        Optional<Usuario> optionalUsuario = this.repository.findById(email);
+        return (optionalUsuario.isPresent() && optionalUsuario.get().verificaSenha(senha));
+
+    }
+
+    public boolean usuarioExiste(String email) {
+        return this.repository.findById(email).isPresent();
+
+    }
+
     private void verificaEmailJaCadastrado(String email) {
         Optional<Usuario> optionalUsuario = this.repository.findById(email);
 
@@ -52,9 +64,4 @@ public class UsuarioService {
         return new Usuario(usuarioDTO.getEmail(), usuarioDTO.getNome(), usuarioDTO.getSenha());
     }
 
-    public boolean validaUsuario(String email, String senha) {
-        Optional<Usuario> optionalUsuario = this.repository.findById(email);
-        return (optionalUsuario.isPresent() && optionalUsuario.get().verificaSenha(senha));
-
-    }
 }

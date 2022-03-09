@@ -1,7 +1,9 @@
 package com.ufcg.es.healthtrack.filter;
 
 import com.ufcg.es.healthtrack.service.JWTService;
+import com.ufcg.es.healthtrack.service.UsuarioService;
 import io.jsonwebtoken.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +13,9 @@ import java.io.IOException;
 public class JWTFilter extends GenericFilter {
 
     public final static int TOKEN_INDEX = 7;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -27,7 +32,10 @@ public class JWTFilter extends GenericFilter {
 
         String token = header.substring(TOKEN_INDEX);
         try {
-            Jwts.parser().setSigningKey(JWTService.TOKEN_KEY).parseClaimsJws(token).getBody();
+            String emailUsuario = Jwts.parser().setSigningKey(JWTService.TOKEN_KEY).parseClaimsJws(token).getBody().getSubject();
+            if (!usuarioService.usuarioExiste(emailUsuario)) {
+                throw new SignatureException("Erro durante a autenticação do usuário.");
+            }
         } catch (SignatureException | ExpiredJwtException | MalformedJwtException | PrematureJwtException
                 | UnsupportedJwtException | IllegalArgumentException e) {
             ((HttpServletResponse) servletResponse).sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
