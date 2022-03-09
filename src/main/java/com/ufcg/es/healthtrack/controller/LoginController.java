@@ -3,7 +3,7 @@ package com.ufcg.es.healthtrack.controller;
 import com.ufcg.es.healthtrack.model.dto.Credenciais;
 import com.ufcg.es.healthtrack.model.dto.LoginResponse;
 import com.ufcg.es.healthtrack.service.JWTService;
-import com.ufcg.es.healthtrack.util.CredenciaisInvalidasException;
+import com.ufcg.es.healthtrack.exception.CredenciaisInvalidasException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

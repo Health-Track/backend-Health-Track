@@ -23,7 +23,6 @@ public class JWTFilter extends GenericFilter {
             ((HttpServletResponse) servletResponse).sendError(HttpServletResponse.SC_UNAUTHORIZED,
                     "Token inexistente ou mal formatado!");
             return;
-            // throw new ServletException("Token inexistente ou mal formatado!");
         }
 
         String token = header.substring(TOKEN_INDEX);
@@ -32,9 +31,7 @@ public class JWTFilter extends GenericFilter {
         } catch (SignatureException | ExpiredJwtException | MalformedJwtException | PrematureJwtException
                 | UnsupportedJwtException | IllegalArgumentException e) {
             ((HttpServletResponse) servletResponse).sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
-            return;// a requisição nem precisa passar adiante, retornar já para o cliente pois não
-            // pode prosseguir daqui pra frente
-            // por falta de autorização
+            return;
         }
 
         filterChain.doFilter(request, servletResponse);

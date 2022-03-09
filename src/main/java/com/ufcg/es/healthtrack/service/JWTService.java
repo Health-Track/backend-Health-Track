@@ -3,7 +3,7 @@ package com.ufcg.es.healthtrack.service;
 import com.ufcg.es.healthtrack.filter.JWTFilter;
 import com.ufcg.es.healthtrack.model.dto.Credenciais;
 import com.ufcg.es.healthtrack.model.dto.LoginResponse;
-import com.ufcg.es.healthtrack.util.CredenciaisInvalidasException;
+import com.ufcg.es.healthtrack.exception.CredenciaisInvalidasException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;

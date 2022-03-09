@@ -22,8 +22,9 @@ public class UsuarioService {
         this.repository.save(geraUsuario(usuarioDTO));
     }
 
-    public List<Usuario> listarUsuario() {
-        return repository.findAll();
+    public Usuario getUsuario(String email) {
+        //TODO verificar se o usuario existe antes de retornar
+        return repository.findById(email).get();
     }
 
     private void verificaDadosUsuarioDTO(UsuarioDTO usuarioDTO) {

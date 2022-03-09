@@ -1,7 +1,6 @@
 package com.ufcg.es.healthtrack.controller;
 
-import com.ufcg.es.healthtrack.model.dto.Credenciais;
-import com.ufcg.es.healthtrack.model.dto.LoginResponse;
+import com.ufcg.es.healthtrack.model.dto.ExceptionResponse;
 import com.ufcg.es.healthtrack.model.dto.UsuarioDTO;
 import com.ufcg.es.healthtrack.service.JWTService;
 import com.ufcg.es.healthtrack.service.UsuarioService;
@@ -21,7 +20,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @Autowired
-    private JWTService asdsadasd;
+    private JWTService jwtService;
 
     @PostMapping
     public ResponseEntity cadastrarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
@@ -29,7 +28,7 @@ public class UsuarioController {
             usuarioService.cadastrarUsuario(usuarioDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
-            return new ResponseEntity(e.getMessage(),HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.BAD_REQUEST);
         }
 
     }
@@ -37,6 +36,6 @@ public class UsuarioController {
     @GetMapping("/test")
     public ResponseEntity dsa(ServletRequest servletRequest) {
 
-        return new ResponseEntity<>(asdsadasd.getEmailUsuarioLogado(((HttpServletRequest) servletRequest).getHeader("Authorization")),HttpStatus.OK);
+        return new ResponseEntity<>(jwtService.getEmailUsuarioLogado(((HttpServletRequest) servletRequest).getHeader("Authorization")),HttpStatus.OK);
     }
 }

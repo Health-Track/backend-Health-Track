@@ -13,7 +13,9 @@ public class HealthtrackApplication {
 	public FilterRegistrationBean<JWTFilter> jwtFilter() {
 		FilterRegistrationBean<JWTFilter> jwtFilter = new FilterRegistrationBean<JWTFilter>();
 		jwtFilter.setFilter(new JWTFilter());
-		jwtFilter.addUrlPatterns("/auth/test");
+		jwtFilter.addUrlPatterns("/auth/test",
+								 "/exame/glicemia",
+								 "/exame/glicemia/listar");
 		return jwtFilter;
 	}
 
