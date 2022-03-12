@@ -26,7 +26,7 @@ public class GlicemiaController {
         try {
             this.exameService.cadastrarExameGlicemia(glicemiaDTO,getAuthorizationHeader(servletRequest));
             return new ResponseEntity(HttpStatus.CREATED);
-        } catch (HealthTrackSystemException e) {
+        } catch (HealthTrackSystemException | SecurityException e) {
             return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.BAD_REQUEST);
         }
     }
