@@ -2,6 +2,7 @@ package com.ufcg.es.healthtrack.controller;
 
 import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.model.dto.Credenciais;
+import com.ufcg.es.healthtrack.model.dto.ExceptionResponse;
 import com.ufcg.es.healthtrack.model.dto.LoginResponse;
 import com.ufcg.es.healthtrack.service.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class LoginController {
       try {
           return new ResponseEntity<LoginResponse>(jwtService.autentica(credenciais), HttpStatus.OK);
       } catch (HealthTrackSystemException e) {
-          return new ResponseEntity<LoginResponse>(new LoginResponse(e.getMessage()), HttpStatus.BAD_REQUEST);
+          return new ResponseEntity<ExceptionResponse>(new ExceptionResponse(e.getMessage()), HttpStatus.BAD_REQUEST);
       }
     }
 }
