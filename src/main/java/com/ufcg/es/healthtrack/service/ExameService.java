@@ -2,10 +2,13 @@ package com.ufcg.es.healthtrack.service;
 
 import com.ufcg.es.healthtrack.model.File;
 import com.ufcg.es.healthtrack.model.Usuario;
+import com.ufcg.es.healthtrack.model.dto.fezes.FezesDTO;
 import com.ufcg.es.healthtrack.model.dto.GlicemiaDTO;
+import com.ufcg.es.healthtrack.model.dto.VisualizarExameDTO;
+import com.ufcg.es.healthtrack.model.dto.fezes.FezesVisualizarDTO;
+import com.ufcg.es.healthtrack.model.exame.ExameFezes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -26,6 +29,9 @@ public class ExameService {
 
     @Autowired
     private FileService fileService;
+
+    @Autowired
+    private ExameFezesService exameFezesService;
 
     public void cadastrarExameGlicemia(GlicemiaDTO glicemiaDTO, String authorizationHeader) {
         Usuario usuario = getUsuarioLogado(authorizationHeader);
@@ -61,4 +67,18 @@ public class ExameService {
     }
 
 
+    public void cadastrarExameFezes(FezesDTO exameDTO, String authorizationHeader) {
+        Usuario usuario = getUsuarioLogado(authorizationHeader);
+        this.exameFezesService.adicionaExame(exameDTO,usuario);
+
+    }
+
+    public List<FezesVisualizarDTO> listarTodosExamesFezes(String authorizationHeader) {
+        Usuario usuario = getUsuarioLogado(authorizationHeader);
+        return this.exameFezesService.listarTodosPorUsuario(usuario);
+    }
+
+    public FezesVisualizarDTO visializarExameFezes(VisualizarExameDTO dto, String authorizationHeader) {
+        return this.exameFezesService.visualizarExame(dto,getUsuarioLogado(authorizationHeader));
+    }
 }

@@ -17,7 +17,9 @@ public class HealthtrackApplication {
 								 "/exame/glicemia",
 								 "/exame/glicemia/listar",
 								 "/exame/pdf/upload",
-								 "/exame/pdf/download/");
+								 "/exame/pdf/download/",
+								 "/exame/fezes",
+								 "/exame/fezes/listar");
 
 		return jwtFilter;
 	}
