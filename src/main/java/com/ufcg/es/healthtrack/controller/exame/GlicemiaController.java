@@ -33,15 +33,19 @@ public class GlicemiaController {
 
     @GetMapping("/listar")
     public ResponseEntity listarTodos(ServletRequest servletRequest) {
-        return new ResponseEntity<List<GlicemiaDTO>>(this.exameService.listarTodosExamesGlicemia(getAuthorizationHeader(servletRequest)),HttpStatus.OK);
+        try {
+            return new ResponseEntity<List<GlicemiaDTO>>(this.exameService.listarTodosExamesGlicemia(getAuthorizationHeader(servletRequest)),HttpStatus.OK);
+        } catch (HealthTrackSystemException | SecurityException e) {
+            return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping
     public ResponseEntity visializarExame(@RequestBody LocalDateTime dataMedicao , ServletRequest servletRequest) {
         try {
-            return new ResponseEntity<>(this.exameService.visializarExameGlicemia(dataMedicao,getAuthorizationHeader(servletRequest)), HttpStatus.OK);
+            return new ResponseEntity<>(this.exameService.visualizarExameGlicemia(dataMedicao,getAuthorizationHeader(servletRequest)), HttpStatus.OK);
         } catch (HealthTrackSystemException e) {
-            return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.NOT_FOUND);
+            return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.BAD_REQUEST);
         }
     }
 

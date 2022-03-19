@@ -19,7 +19,9 @@ public class HealthtrackApplication {
 								 "/exame/pdf/upload",
 								 "/exame/pdf/download/",
 								 "/exame/fezes",
-								 "/exame/fezes/listar");
+								 "/exame/fezes/listar",
+				                 "/exame/hemograma",
+								 "/exame/hemograma/listar");
 
 		return jwtFilter;
 	}
