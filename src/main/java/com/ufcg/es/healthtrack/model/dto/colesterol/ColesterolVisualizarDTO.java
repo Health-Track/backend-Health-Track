@@ -1,41 +1,22 @@
-package com.ufcg.es.healthtrack.model.exame;
+package com.ufcg.es.healthtrack.model.dto.colesterol;
 
-import com.ufcg.es.healthtrack.model.Usuario;
-
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-public class Colesterol {
+public class ColesterolVisualizarDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @ManyToOne
-    private Usuario usuario;
-
     private LocalDateTime dataMedicao;
-
     private String descricao;
-
     private int colesterolTotal;
-
     private int colesterolHDL;
-
     private int colesterolNaoHDL;
-
     private int colesterolLDL;
-
     private double relacaoTotalHDL;
 
-    public Colesterol(){}
-
-    public Colesterol(Usuario usuario, String descricao, LocalDateTime dataMedicao, int colesterolTotal,
-                      int colesterolHDL, int colesterolNaoHDL, int colesterolLDL, double relacaoTotalHDL){
-        this.usuario = usuario;
-        this.descricao = descricao;
+    public ColesterolVisualizarDTO(long id, LocalDateTime dataMedicao, String descricao, int colesterolTotal, int colesterolHDL, int colesterolNaoHDL, int colesterolLDL, double relacaoTotalHDL) {
+        this.id = id;
         this.dataMedicao = dataMedicao;
+        this.descricao = descricao;
         this.colesterolTotal = colesterolTotal;
         this.colesterolHDL = colesterolHDL;
         this.colesterolNaoHDL = colesterolNaoHDL;
@@ -43,8 +24,20 @@ public class Colesterol {
         this.relacaoTotalHDL = relacaoTotalHDL;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getDataMedicao() {
+        return dataMedicao;
+    }
+
+    public void setDataMedicao(LocalDateTime dataMedicao) {
+        this.dataMedicao = dataMedicao;
     }
 
     public String getDescricao() {
@@ -94,13 +87,4 @@ public class Colesterol {
     public void setRelacaoTotalHDL(double relacaoTotalHDL) {
         this.relacaoTotalHDL = relacaoTotalHDL;
     }
-
-    public LocalDateTime getDataMedicao() {
-        return dataMedicao;
-    }
-
-    public long getId() {
-        return id;
-    }
 }
-

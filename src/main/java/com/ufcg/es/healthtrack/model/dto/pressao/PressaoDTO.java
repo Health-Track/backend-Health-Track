@@ -1,4 +1,4 @@
-package com.ufcg.es.healthtrack.model.dto;
+package com.ufcg.es.healthtrack.model.dto.pressao;
 
 public class PressaoDTO {
 

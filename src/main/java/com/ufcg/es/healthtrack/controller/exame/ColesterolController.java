@@ -2,8 +2,10 @@ package com.ufcg.es.healthtrack.controller.exame;
 
 
 import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
-import com.ufcg.es.healthtrack.model.dto.ColesterolDTO;
+import com.ufcg.es.healthtrack.model.dto.colesterol.ColesterolDTO;
 import com.ufcg.es.healthtrack.model.dto.ExceptionResponse;
+import com.ufcg.es.healthtrack.model.dto.VisualizarExameDTO;
+import com.ufcg.es.healthtrack.model.dto.colesterol.ColesterolVisualizarDTO;
 import com.ufcg.es.healthtrack.service.ExameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,6 +39,20 @@ public class ColesterolController {
 
     @GetMapping("/listar")
     public ResponseEntity listarTodos(ServletRequest servletRequest) {
-        return new ResponseEntity<List<ColesterolDTO>>(this.exameService.listarTodosExamesColesterol(getAuthorizationHeader(servletRequest)), HttpStatus.OK);
+        try {
+            return new ResponseEntity(this.exameService.listarTodosExamesColesterol(getAuthorizationHeader(servletRequest)), HttpStatus.OK);
+        } catch (HealthTrackSystemException e) {
+            return new ResponseEntity(new ExceptionResponse(e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity visualizarExame(@RequestBody VisualizarExameDTO dto, ServletRequest servletRequest) {
+        try {
+            ColesterolVisualizarDTO exame = this.exameService.visualizarExameColesterol(dto,getAuthorizationHeader(servletRequest));
+            return new ResponseEntity(exame, HttpStatus.OK);
+        } catch (HealthTrackSystemException e) {
+            return new ResponseEntity(new ExceptionResponse(e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
     }
 }

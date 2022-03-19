@@ -1,25 +1,19 @@
-package com.ufcg.es.healthtrack.model.dto;
+package com.ufcg.es.healthtrack.model.dto.colesterol;
 
 import java.time.LocalDateTime;
 
 public class ColesterolDTO {
 
     private LocalDateTime dataMedicao;
-
     private String descricao;
-
     private int colesterolTotal;
-
     private int colesterolHDL;
-
     private int colesterolNaoHDL;
-
     private int colesterolLDL;
-
-    private int relacaoTotalHDL;
+    private double relacaoTotalHDL;
 
     public ColesterolDTO(String descricao, LocalDateTime dataMedicao, int colesterolTotal,
-                         int colesterolHDL, int colesterolNaoHDL, int colesterolLDL, int relacaoTotalHDL) {
+                         int colesterolHDL, int colesterolNaoHDL, int colesterolLDL, double relacaoTotalHDL) {
         this.descricao = descricao;
         this.dataMedicao = dataMedicao;
         this.colesterolTotal = colesterolTotal;
@@ -69,11 +63,11 @@ public class ColesterolDTO {
         this.colesterolLDL = colesterolLDL;
     }
 
-    public int getRelacaoTotalHDL() {
+    public double getRelacaoTotalHDL() {
         return relacaoTotalHDL;
     }
 
-    public void setRelacaoTotalHDL(int relacaoTotalHDL) {
+    public void setRelacaoTotalHDL(double relacaoTotalHDL) {
         this.relacaoTotalHDL = relacaoTotalHDL;
     }
 

@@ -1,16 +1,22 @@
 package com.ufcg.es.healthtrack.service;
 
+import com.ufcg.es.healthtrack.model.File;
 import com.ufcg.es.healthtrack.model.Usuario;
-import com.ufcg.es.healthtrack.model.dto.ColesterolDTO;
+import com.ufcg.es.healthtrack.model.dto.colesterol.ColesterolDTO;
 import com.ufcg.es.healthtrack.model.dto.GlicemiaDTO;
-import com.ufcg.es.healthtrack.model.dto.PressaoDTO;
+import com.ufcg.es.healthtrack.model.dto.pressao.PressaoDTO;
 import com.ufcg.es.healthtrack.model.dto.VisualizarExameDTO;
+import com.ufcg.es.healthtrack.model.dto.colesterol.ColesterolVisualizarDTO;
 import com.ufcg.es.healthtrack.model.dto.fezes.FezesDTO;
 import com.ufcg.es.healthtrack.model.dto.fezes.FezesVisualizarDTO;
 import com.ufcg.es.healthtrack.model.dto.hemograma.HemogramaDTO;
 import com.ufcg.es.healthtrack.model.dto.hemograma.HemogramaVisualizarDTO;
+import com.ufcg.es.healthtrack.model.dto.pressao.PressaoVisualizarDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -40,6 +46,7 @@ public class ExameService {
 
     @Autowired
     private PressaoService pressaoService;
+
 
     public void cadastrarExameGlicemia(GlicemiaDTO glicemiaDTO, String authorizationHeader) {
         Usuario usuario = getUsuarioLogado(authorizationHeader);
@@ -97,7 +104,7 @@ public class ExameService {
         this.colesterolService.adicionarDados(colesterolDTO,usuario);
     }
 
-    public List<ColesterolDTO> listarTodosExamesColesterol(String authorizationHeader) {
+    public List<ColesterolVisualizarDTO> listarTodosExamesColesterol(String authorizationHeader) {
         Usuario usuario = getUsuarioLogado(authorizationHeader);
         return this.colesterolService.listarTodosPorUsuario(usuario);
     }
@@ -107,8 +114,29 @@ public class ExameService {
         this.pressaoService.adicionarMedicao(pressaoDTO,usuario);
     }
 
-    public List<PressaoDTO> listaTodosExamesPressao(String authorizationHeader) {
+    public List<PressaoVisualizarDTO> listaTodosExamesPressao(String authorizationHeader) {
         Usuario usuario = getUsuarioLogado(authorizationHeader);
         return this.pressaoService.listarTodosPorUsuario(usuario);
+    }
+
+    public ColesterolVisualizarDTO visualizarExameColesterol(VisualizarExameDTO dto, String authorizationHeader) {
+        Usuario usuario = getUsuarioLogado(authorizationHeader);
+        return this.colesterolService.visualizarExame(dto, usuario);
+    }
+
+    public void uploadFile(MultipartFile multipartfile, String authorizationHeader) throws IOException {
+        Usuario usuario = getUsuarioLogado(authorizationHeader);
+        this.fileService.uploadFile(multipartfile,usuario);
+    }
+
+
+    public File downloadFile(long id, String authorizationHeader) {
+        Usuario usuario = getUsuarioLogado(authorizationHeader);
+        return this.fileService.getFile(id);
+    }
+
+    public PressaoVisualizarDTO visualizarExamePressao(VisualizarExameDTO dto, String authorizationHeader) {
+        Usuario usuario = getUsuarioLogado(authorizationHeader);
+        return this.pressaoService.visualizarExame(dto,usuario);
     }
 }

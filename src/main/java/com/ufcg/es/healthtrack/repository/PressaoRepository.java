@@ -13,4 +13,5 @@ public interface PressaoRepository extends JpaRepository<Pressao, Long> {
 
     List<Pressao> findAllByUsuario(Usuario usuario);
 
+    Optional<Pressao> findByIdAndUsuario(long id, Usuario usuario);
 }

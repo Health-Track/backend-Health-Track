@@ -82,9 +82,9 @@ public class FileController {
 
 
     @GetMapping(value = "/download/{id}")
-    public void downloadFile(@PathVariable long id, HttpServletResponse response) throws Exception {
+    public void downloadFile(@PathVariable long id, HttpServletResponse response, ServletRequest servletRequest) throws Exception {
 
-        File file = exameService.getFile(id);
+        File file = exameService.downloadFile(id, getAuthorizationHeader(servletRequest));
 
 //        File file = fileRepository.findById(id).get();
 

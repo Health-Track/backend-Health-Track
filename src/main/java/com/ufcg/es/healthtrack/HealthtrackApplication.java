@@ -21,7 +21,11 @@ public class HealthtrackApplication {
 								 "/exame/fezes",
 								 "/exame/fezes/listar",
 				                 "/exame/hemograma",
-								 "/exame/hemograma/listar");
+								 "/exame/hemograma/listar",
+								 "/exame/colesterol",
+								 "/exame/colesterol/listar",
+							  	 "/exame/pressao",
+							  	 "/exame/pressao/listar");
 
 		return jwtFilter;
 	}
