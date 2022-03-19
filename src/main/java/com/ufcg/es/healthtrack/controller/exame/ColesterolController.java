@@ -4,7 +4,6 @@ package com.ufcg.es.healthtrack.controller.exame;
 import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.model.dto.ColesterolDTO;
 import com.ufcg.es.healthtrack.model.dto.ExceptionResponse;
-import com.ufcg.es.healthtrack.service.ColesterolService;
 import com.ufcg.es.healthtrack.service.ExameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

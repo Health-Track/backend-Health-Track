@@ -1,19 +1,16 @@
 package com.ufcg.es.healthtrack.service;
 
-import com.ufcg.es.healthtrack.model.File;
 import com.ufcg.es.healthtrack.model.Usuario;
+import com.ufcg.es.healthtrack.model.dto.ColesterolDTO;
 import com.ufcg.es.healthtrack.model.dto.GlicemiaDTO;
+import com.ufcg.es.healthtrack.model.dto.PressaoDTO;
 import com.ufcg.es.healthtrack.model.dto.VisualizarExameDTO;
 import com.ufcg.es.healthtrack.model.dto.fezes.FezesDTO;
 import com.ufcg.es.healthtrack.model.dto.fezes.FezesVisualizarDTO;
 import com.ufcg.es.healthtrack.model.dto.hemograma.HemogramaDTO;
 import com.ufcg.es.healthtrack.model.dto.hemograma.HemogramaVisualizarDTO;
-import com.ufcg.es.healthtrack.model.exame.ExameFezes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -37,6 +34,12 @@ public class ExameService {
 
     @Autowired
     private HemogramaService hemogramaService;
+
+    @Autowired
+    private ColesterolService colesterolService;
+
+    @Autowired
+    private PressaoService pressaoService;
 
     public void cadastrarExameGlicemia(GlicemiaDTO glicemiaDTO, String authorizationHeader) {
         Usuario usuario = getUsuarioLogado(authorizationHeader);
@@ -87,5 +90,25 @@ public class ExameService {
 
     public HemogramaVisualizarDTO visualizarExamesHemograma(VisualizarExameDTO dto, String authorizationHeader) {
         return this.hemogramaService.visualizarExame(dto,getUsuarioLogado(authorizationHeader));
+    }
+
+    public void cadastrarExameColesterol(ColesterolDTO colesterolDTO, String authorizationHeader) {
+        Usuario usuario = getUsuarioLogado(authorizationHeader);
+        this.colesterolService.adicionarDados(colesterolDTO,usuario);
+    }
+
+    public List<ColesterolDTO> listarTodosExamesColesterol(String authorizationHeader) {
+        Usuario usuario = getUsuarioLogado(authorizationHeader);
+        return this.colesterolService.listarTodosPorUsuario(usuario);
+    }
+
+    public void cadastrarExamePressao(PressaoDTO pressaoDTO, String authorizationHeader) {
+        Usuario usuario = getUsuarioLogado(authorizationHeader);
+        this.pressaoService.adicionarMedicao(pressaoDTO,usuario);
+    }
+
+    public List<PressaoDTO> listaTodosExamesPressao(String authorizationHeader) {
+        Usuario usuario = getUsuarioLogado(authorizationHeader);
+        return this.pressaoService.listarTodosPorUsuario(usuario);
     }
 }
