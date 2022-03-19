@@ -7,12 +7,16 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ufcg.es.healthtrack.model.File;
 import com.ufcg.es.healthtrack.model.Usuario;
+import com.ufcg.es.healthtrack.service.ExameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -50,26 +54,39 @@ public class FileController {
     @Autowired
     private UsuarioRepository userRepository;
 
+    @Autowired
+    private ExameService exameService;
+
 
     @PostMapping(value = "/upload")
-    public void uploadFile(@RequestParam("file") MultipartFile multipartfile, @RequestParam("email") String email, RedirectAttributes ra) throws IOException {
-        String fileName = StringUtils.cleanPath(multipartfile.getOriginalFilename());
-        File file = new File();
-        Usuario user = this.userRepository.findById(email).get();
-        file.setUser(user);
-        file.setName(fileName);
-        file.setContent(multipartfile.getBytes());
-        file.setSize(multipartfile.getSize());
-        file.setUploadTime(LocalDateTime.now());
-        fileRepository.save(file);
-        ra.addFlashAttribute("message", "The File has Been Uploaded Succesfully");
+    public void uploadFile(@RequestParam("file") MultipartFile multipartfile, ServletRequest servletRequest, RedirectAttributes ra) throws IOException {
+
+        try {
+            exameService.uploadFile(multipartfile, getAuthorizationHeader(servletRequest));
+            ra.addFlashAttribute("message", "The File has Been Uploaded Succesfully");
+        } catch (SecurityException | IOException e) {
+
+        }
+
+
+//        String fileName = StringUtils.cleanPath(multipartfile.getOriginalFilename());
+//        File file = new File();
+//        Usuario user = this.userRepository.findById(email).get();
+//        file.setUser(user);
+//        file.setName(fileName);
+//        file.setContent(multipartfile.getBytes());
+//        file.setSize(multipartfile.getSize());
+//        file.setUploadTime(LocalDateTime.now());
+//        fileRepository.save(file);
     }
 
 
     @GetMapping(value = "/download/{id}")
     public void downloadFile(@PathVariable long id, HttpServletResponse response) throws Exception {
 
-        File file = fileRepository.findById(id).get();
+        File file = exameService.getFile(id);
+
+//        File file = fileRepository.findById(id).get();
 
 
         response.setContentType("application/octet-stream");
@@ -81,6 +98,10 @@ public class FileController {
         outputStream.write(file.getContent());
         outputStream.close();
 
+    }
+
+    private String getAuthorizationHeader(ServletRequest servletRequest) {
+        return ((HttpServletRequest) servletRequest).getHeader("Authorization");
     }
 
 //    @GetMapping(value = "/download/{email}")

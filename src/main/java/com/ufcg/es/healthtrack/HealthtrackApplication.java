@@ -15,7 +15,10 @@ public class HealthtrackApplication {
 		jwtFilter.setFilter(new JWTFilter());
 		jwtFilter.addUrlPatterns("/auth/test",
 								 "/exame/glicemia",
-								 "/exame/glicemia/listar");
+								 "/exame/glicemia/listar",
+								 "/exame/pdf/upload",
+								 "/exame/pdf/download/");
+
 		return jwtFilter;
 	}
 
