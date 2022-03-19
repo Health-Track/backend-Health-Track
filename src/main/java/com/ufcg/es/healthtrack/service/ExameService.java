@@ -4,6 +4,7 @@ import com.ufcg.es.healthtrack.model.File;
 import com.ufcg.es.healthtrack.model.Usuario;
 import com.ufcg.es.healthtrack.model.dto.GlicemiaDTO;
 import com.ufcg.es.healthtrack.model.dto.VisualizarExameDTO;
+import com.ufcg.es.healthtrack.model.dto.fezes.FezesDTO;
 import com.ufcg.es.healthtrack.model.dto.fezes.FezesVisualizarDTO;
 import com.ufcg.es.healthtrack.model.dto.hemograma.HemogramaDTO;
 import com.ufcg.es.healthtrack.model.dto.hemograma.HemogramaVisualizarDTO;
