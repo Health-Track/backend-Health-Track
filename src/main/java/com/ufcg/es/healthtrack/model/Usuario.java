@@ -2,6 +2,7 @@ package com.ufcg.es.healthtrack.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class Usuario {
@@ -21,5 +22,18 @@ public class Usuario {
 
     public boolean verificaSenha(String senha) {
         return this.senha.equals(senha);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return email.equals(usuario.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email);
     }
 }
