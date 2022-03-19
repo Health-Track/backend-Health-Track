@@ -2,7 +2,6 @@ package com.ufcg.es.healthtrack.service;
 
 import com.ufcg.es.healthtrack.model.File;
 import com.ufcg.es.healthtrack.model.Usuario;
-import com.ufcg.es.healthtrack.model.dto.fezes.FezesDTO;
 import com.ufcg.es.healthtrack.model.dto.GlicemiaDTO;
 import com.ufcg.es.healthtrack.model.dto.VisualizarExameDTO;
 import com.ufcg.es.healthtrack.model.dto.fezes.FezesVisualizarDTO;
@@ -51,18 +50,6 @@ public class ExameService {
     public GlicemiaDTO visualizarExameGlicemia(LocalDateTime dataMedicao, String authorizationHeader) {
         return this.glicemiaService.getExamePorData(dataMedicao,getUsuarioLogado(authorizationHeader));
     }
-
-
-    public void uploadFile(MultipartFile multipartfile, String authorizationHeader) throws IOException {
-        Usuario user = getUsuarioLogado(authorizationHeader);
-        fileService.uploadFile(multipartfile,user);
-    }
-
-    public File getFile(long id) {
-        return fileService.getFile(id);
-    }
-
-
 
 
 
