@@ -3,7 +3,6 @@ package com.ufcg.es.healthtrack.service;
 import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.model.Usuario;
 import com.ufcg.es.healthtrack.model.dto.fezes.FezesDTO;
-import com.ufcg.es.healthtrack.model.dto.VisualizarExameDTO;
 import com.ufcg.es.healthtrack.model.dto.fezes.FezesVisualizarDTO;
 import com.ufcg.es.healthtrack.model.exame.ExameFezes;
 import com.ufcg.es.healthtrack.repository.FezesRepository;

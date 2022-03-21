@@ -2,7 +2,6 @@ package com.ufcg.es.healthtrack.service;
 
 import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.model.Usuario;
-import com.ufcg.es.healthtrack.model.dto.VisualizarExameDTO;
 import com.ufcg.es.healthtrack.model.dto.colesterol.ColesterolDTO;
 import com.ufcg.es.healthtrack.model.dto.colesterol.ColesterolVisualizarDTO;
 import com.ufcg.es.healthtrack.model.exame.Colesterol;

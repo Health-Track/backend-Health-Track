@@ -2,7 +2,6 @@ package com.ufcg.es.healthtrack.controller.exame;
 
 import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.model.dto.ExceptionResponse;
-import com.ufcg.es.healthtrack.model.dto.VisualizarExameDTO;
 import com.ufcg.es.healthtrack.model.dto.hemograma.HemogramaDTO;
 import com.ufcg.es.healthtrack.model.dto.hemograma.HemogramaVisualizarDTO;
 import com.ufcg.es.healthtrack.service.ExameService;

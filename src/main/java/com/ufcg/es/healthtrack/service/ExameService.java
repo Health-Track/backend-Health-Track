@@ -7,7 +7,6 @@ import com.ufcg.es.healthtrack.model.dto.colesterol.ColesterolDTO;
 import com.ufcg.es.healthtrack.model.dto.glicemia.GlicemiaDTO;
 import com.ufcg.es.healthtrack.model.dto.glicemia.GlicemiaVisualizarDTO;
 import com.ufcg.es.healthtrack.model.dto.pressao.PressaoDTO;
-import com.ufcg.es.healthtrack.model.dto.VisualizarExameDTO;
 import com.ufcg.es.healthtrack.model.dto.colesterol.ColesterolVisualizarDTO;
 import com.ufcg.es.healthtrack.model.dto.fezes.FezesDTO;
 import com.ufcg.es.healthtrack.model.dto.fezes.FezesVisualizarDTO;

@@ -2,8 +2,6 @@ package com.ufcg.es.healthtrack.controller.exame;
 
 import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.model.dto.ExceptionResponse;
-import com.ufcg.es.healthtrack.model.dto.VisualizarExameDTO;
-import com.ufcg.es.healthtrack.model.dto.fezes.FezesVisualizarDTO;
 import com.ufcg.es.healthtrack.model.dto.urina.UrinaDTO;
 import com.ufcg.es.healthtrack.model.dto.urina.UrinaVisualizarDTO;
 import com.ufcg.es.healthtrack.service.ExameService;
@@ -11,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.ufcg.es.healthtrack.model.Usuario;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
