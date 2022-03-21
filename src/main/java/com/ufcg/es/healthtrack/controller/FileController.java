@@ -14,11 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.model.File;
 import com.ufcg.es.healthtrack.model.Usuario;
+import com.ufcg.es.healthtrack.model.dto.ExceptionResponse;
+import com.ufcg.es.healthtrack.model.dto.FileDTO;
 import com.ufcg.es.healthtrack.model.dto.VisualizarExameDTO;
+import com.ufcg.es.healthtrack.model.dto.urina.UrinaVisualizarDTO;
 import com.ufcg.es.healthtrack.service.ExameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -49,12 +53,6 @@ public class FileController {
     //localhost:8080/api/v1/exame/pdf/download/{id}"
     //localhost:8080/api/v1/exame/pdf/{email}
 
-
-    @Autowired
-    private FileRepository fileRepository;
-
-    @Autowired
-    private UsuarioRepository userRepository;
 
     @Autowired
     private ExameService exameService;
@@ -104,6 +102,16 @@ public class FileController {
             response.sendError(400, e.getMessage());
         }
 
+    }
+
+    @GetMapping("/listar")
+    public ResponseEntity listar(ServletRequest servletRequest) {
+        try {
+            List<FileDTO> exames = this.exameService.listarTodosExamesPDFs(getAuthorizationHeader(servletRequest));
+            return new ResponseEntity<>(exames, HttpStatus.OK);
+        } catch (HealthTrackSystemException e) {
+            return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.BAD_REQUEST);
+        }
     }
 
     private String getAuthorizationHeader(ServletRequest servletRequest) {

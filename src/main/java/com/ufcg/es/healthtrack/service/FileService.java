@@ -2,6 +2,7 @@ package com.ufcg.es.healthtrack.service;
 
 import com.ufcg.es.healthtrack.model.File;
 import com.ufcg.es.healthtrack.model.Usuario;
+import com.ufcg.es.healthtrack.model.dto.FileDTO;
 import com.ufcg.es.healthtrack.repository.FileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,5 +34,14 @@ public class FileService {
 
     public File getFile(long id) {
         return fileRepository.findById(id).get();
+    }
+
+    public List<FileDTO> listarTodosPorUsuario(Usuario usuario) {
+        List<FileDTO> list = new ArrayList<>();
+
+        for(File f: this.fileRepository.findAllByUsuario(usuario)){
+            list.add(new FileDTO(f.getId(),f.getName()));
+        }
+        return list;
     }
 }

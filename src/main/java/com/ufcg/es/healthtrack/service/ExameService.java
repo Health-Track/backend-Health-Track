@@ -2,6 +2,7 @@ package com.ufcg.es.healthtrack.service;
 
 import com.ufcg.es.healthtrack.model.File;
 import com.ufcg.es.healthtrack.model.Usuario;
+import com.ufcg.es.healthtrack.model.dto.FileDTO;
 import com.ufcg.es.healthtrack.model.dto.colesterol.ColesterolDTO;
 import com.ufcg.es.healthtrack.model.dto.glicemia.GlicemiaDTO;
 import com.ufcg.es.healthtrack.model.dto.glicemia.GlicemiaVisualizarDTO;
@@ -158,5 +159,10 @@ public class ExameService {
     public UrinaVisualizarDTO visualizarExameUrina(long id, String authorizationHeader) {
         Usuario usuario = getUsuarioLogado(authorizationHeader);
         return this.exameUrinaService.visualizarExame(id,usuario);
+    }
+
+    public List<FileDTO> listarTodosExamesPDFs(String authorizationHeader) {
+        Usuario usuario = getUsuarioLogado(authorizationHeader);
+        return this.fileService.listarTodosPorUsuario(usuario);
     }
 }
