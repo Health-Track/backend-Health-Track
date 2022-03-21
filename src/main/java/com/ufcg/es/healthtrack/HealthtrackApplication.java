@@ -25,7 +25,9 @@ public class HealthtrackApplication {
 								 "/exame/colesterol",
 								 "/exame/colesterol/listar",
 							  	 "/exame/pressao",
-							  	 "/exame/pressao/listar");
+							  	 "/exame/pressao/listar",
+								 "/exame/urina",
+								 "/exame/urina/listar");
 
 		return jwtFilter;
 	}

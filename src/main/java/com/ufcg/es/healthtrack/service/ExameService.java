@@ -12,6 +12,8 @@ import com.ufcg.es.healthtrack.model.dto.fezes.FezesVisualizarDTO;
 import com.ufcg.es.healthtrack.model.dto.hemograma.HemogramaDTO;
 import com.ufcg.es.healthtrack.model.dto.hemograma.HemogramaVisualizarDTO;
 import com.ufcg.es.healthtrack.model.dto.pressao.PressaoVisualizarDTO;
+import com.ufcg.es.healthtrack.model.dto.urina.UrinaDTO;
+import com.ufcg.es.healthtrack.model.dto.urina.UrinaVisualizarDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,6 +48,9 @@ public class ExameService {
 
     @Autowired
     private PressaoService pressaoService;
+
+    @Autowired
+    private ExameUrinaService exameUrinaService;
 
 
     public void cadastrarExameGlicemia(GlicemiaDTO glicemiaDTO, String authorizationHeader) {
@@ -138,5 +143,20 @@ public class ExameService {
     public PressaoVisualizarDTO visualizarExamePressao(VisualizarExameDTO dto, String authorizationHeader) {
         Usuario usuario = getUsuarioLogado(authorizationHeader);
         return this.pressaoService.visualizarExame(dto,usuario);
+    }
+
+    public void cadastrarExameUrina(UrinaDTO urinaDTO, String authorizationHeader) {
+        Usuario usuario = getUsuarioLogado(authorizationHeader);
+        this.exameUrinaService.adicionaExame(urinaDTO,usuario);
+    }
+
+    public List<UrinaVisualizarDTO> listarTodosExamesUrina(String authorizationHeader) {
+        Usuario usuario = getUsuarioLogado(authorizationHeader);
+        return this.exameUrinaService.listarTodosPorUsuario(usuario);
+    }
+
+    public UrinaVisualizarDTO visualizarExameUrina(VisualizarExameDTO dto, String authorizationHeader) {
+        Usuario usuario = getUsuarioLogado(authorizationHeader);
+        return this.exameUrinaService.visualizarExame(dto,usuario);
     }
 }
