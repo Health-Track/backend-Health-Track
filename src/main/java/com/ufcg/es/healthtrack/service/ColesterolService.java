@@ -51,8 +51,8 @@ public class ColesterolService {
                                  exame.getRelacaoTotalHDL());
     }
 
-    public ColesterolVisualizarDTO visualizarExame(VisualizarExameDTO dto, Usuario usuario) {
-        Optional<Colesterol> optColesterol = this.repository.findByIdAndUsuario(dto.getId(),usuario);
+    public ColesterolVisualizarDTO visualizarExame(long id, Usuario usuario) {
+        Optional<Colesterol> optColesterol = this.repository.findByIdAndUsuario(id,usuario);
         if(optColesterol.isEmpty()) {
             throw new HealthTrackSystemException("Exame não encontrado");
         }

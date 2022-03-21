@@ -48,10 +48,10 @@ public class UrinaController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity visualizarExame(@RequestBody VisualizarExameDTO dto, ServletRequest servletRequest) {
+    @GetMapping("/{id}")
+    public ResponseEntity visualizarExame(@PathVariable long id, ServletRequest servletRequest) {
         try {
-            UrinaVisualizarDTO exame = this.exameService.visualizarExameUrina(dto, getAuthorizationHeader(servletRequest));
+            UrinaVisualizarDTO exame = this.exameService.visualizarExameUrina(id, getAuthorizationHeader(servletRequest));
             return new ResponseEntity(exame, HttpStatus.OK);
         } catch (HealthTrackSystemException e) {
             return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.BAD_REQUEST);

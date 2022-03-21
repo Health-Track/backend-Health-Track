@@ -49,8 +49,8 @@ public class ExameUrinaService {
                 exame.getCristais(), exame.getBacterias(), exame.getFilamentoDeMuco(), exame.getOutrosElementos());
     }
 
-    public UrinaVisualizarDTO visualizarExame(VisualizarExameDTO dto, Usuario usuarioLogado) {
-        Optional<ExameUrina> optExame = this.urinaRepository.findByIdAndUsuario(dto.getId(), usuarioLogado);
+    public UrinaVisualizarDTO visualizarExame(long id, Usuario usuarioLogado) {
+        Optional<ExameUrina> optExame = this.urinaRepository.findByIdAndUsuario(id, usuarioLogado);
         if(optExame.isEmpty()) {
             throw new HealthTrackSystemException("Exame não encontrado");
         }

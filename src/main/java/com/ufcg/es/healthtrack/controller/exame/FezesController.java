@@ -13,11 +13,7 @@ import com.ufcg.es.healthtrack.service.ExameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -53,10 +49,10 @@ public class FezesController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity visualizarExame(@RequestBody VisualizarExameDTO dto, ServletRequest servletRequest) {
+    @GetMapping("/{id}")
+    public ResponseEntity visualizarExame(@PathVariable long id, ServletRequest servletRequest) {
         try {
-            FezesVisualizarDTO exame = this.exameService.visualizarExameFezes(dto, getAuthorizationHeader(servletRequest));
+            FezesVisualizarDTO exame = this.exameService.visualizarExameFezes(id, getAuthorizationHeader(servletRequest));
             return new ResponseEntity(exame, HttpStatus.OK);
         } catch (HealthTrackSystemException e) {
             return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.BAD_REQUEST);

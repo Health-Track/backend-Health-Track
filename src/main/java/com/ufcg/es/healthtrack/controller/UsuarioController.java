@@ -32,10 +32,4 @@ public class UsuarioController {
         }
 
     }
-
-    @GetMapping("/test")
-    public ResponseEntity dsa(ServletRequest servletRequest) {
-
-        return new ResponseEntity<>(jwtService.getEmailUsuarioLogado(((HttpServletRequest) servletRequest).getHeader("Authorization")),HttpStatus.OK);
-    }
 }

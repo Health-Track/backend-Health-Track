@@ -3,7 +3,8 @@ package com.ufcg.es.healthtrack.service;
 import com.ufcg.es.healthtrack.model.File;
 import com.ufcg.es.healthtrack.model.Usuario;
 import com.ufcg.es.healthtrack.model.dto.colesterol.ColesterolDTO;
-import com.ufcg.es.healthtrack.model.dto.GlicemiaDTO;
+import com.ufcg.es.healthtrack.model.dto.glicemia.GlicemiaDTO;
+import com.ufcg.es.healthtrack.model.dto.glicemia.GlicemiaVisualizarDTO;
 import com.ufcg.es.healthtrack.model.dto.pressao.PressaoDTO;
 import com.ufcg.es.healthtrack.model.dto.VisualizarExameDTO;
 import com.ufcg.es.healthtrack.model.dto.colesterol.ColesterolVisualizarDTO;
@@ -19,7 +20,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -58,13 +58,13 @@ public class ExameService {
         this.glicemiaService.adicionarMedicao(glicemiaDTO,usuario);
     }
 
-    public List<GlicemiaDTO> listarTodosExamesGlicemia(String authorizationHeader) {
+    public List<GlicemiaVisualizarDTO> listarTodosExamesGlicemia(String authorizationHeader) {
         return this.glicemiaService.listarTodosPorUsuario(getUsuarioLogado(authorizationHeader));
 
     }
 
-    public GlicemiaDTO visualizarExameGlicemia(LocalDateTime dataMedicao, String authorizationHeader) {
-        return this.glicemiaService.getExamePorData(dataMedicao,getUsuarioLogado(authorizationHeader));
+    public GlicemiaVisualizarDTO visualizarExameGlicemia(long id, String authorizationHeader) {
+        return this.glicemiaService.getExamePorId(id,getUsuarioLogado(authorizationHeader));
     }
 
 
@@ -86,8 +86,8 @@ public class ExameService {
         return this.exameFezesService.listarTodosPorUsuario(usuario);
     }
 
-    public FezesVisualizarDTO visualizarExameFezes(VisualizarExameDTO dto, String authorizationHeader) {
-        return this.exameFezesService.visualizarExame(dto,getUsuarioLogado(authorizationHeader));
+    public FezesVisualizarDTO visualizarExameFezes(long id, String authorizationHeader) {
+        return this.exameFezesService.visualizarExame(id,getUsuarioLogado(authorizationHeader));
     }
 
     public void cadastrarExameHemograma(HemogramaDTO exame, String authorizationHeader) {
@@ -100,8 +100,8 @@ public class ExameService {
         return this.hemogramaService.listarTodosPorUsuario(usuario);
     }
 
-    public HemogramaVisualizarDTO visualizarExamesHemograma(VisualizarExameDTO dto, String authorizationHeader) {
-        return this.hemogramaService.visualizarExame(dto,getUsuarioLogado(authorizationHeader));
+    public HemogramaVisualizarDTO visualizarExamesHemograma(long id, String authorizationHeader) {
+        return this.hemogramaService.visualizarExame(id,getUsuarioLogado(authorizationHeader));
     }
 
     public void cadastrarExameColesterol(ColesterolDTO colesterolDTO, String authorizationHeader) {
@@ -124,9 +124,9 @@ public class ExameService {
         return this.pressaoService.listarTodosPorUsuario(usuario);
     }
 
-    public ColesterolVisualizarDTO visualizarExameColesterol(VisualizarExameDTO dto, String authorizationHeader) {
+    public ColesterolVisualizarDTO visualizarExameColesterol(long id, String authorizationHeader) {
         Usuario usuario = getUsuarioLogado(authorizationHeader);
-        return this.colesterolService.visualizarExame(dto, usuario);
+        return this.colesterolService.visualizarExame(id, usuario);
     }
 
     public void uploadFile(MultipartFile multipartfile, String authorizationHeader) throws IOException {
@@ -140,9 +140,9 @@ public class ExameService {
         return this.fileService.getFile(id);
     }
 
-    public PressaoVisualizarDTO visualizarExamePressao(VisualizarExameDTO dto, String authorizationHeader) {
+    public PressaoVisualizarDTO visualizarExamePressao(long id, String authorizationHeader) {
         Usuario usuario = getUsuarioLogado(authorizationHeader);
-        return this.pressaoService.visualizarExame(dto,usuario);
+        return this.pressaoService.visualizarExame(id,usuario);
     }
 
     public void cadastrarExameUrina(UrinaDTO urinaDTO, String authorizationHeader) {
@@ -155,8 +155,8 @@ public class ExameService {
         return this.exameUrinaService.listarTodosPorUsuario(usuario);
     }
 
-    public UrinaVisualizarDTO visualizarExameUrina(VisualizarExameDTO dto, String authorizationHeader) {
+    public UrinaVisualizarDTO visualizarExameUrina(long id, String authorizationHeader) {
         Usuario usuario = getUsuarioLogado(authorizationHeader);
-        return this.exameUrinaService.visualizarExame(dto,usuario);
+        return this.exameUrinaService.visualizarExame(id,usuario);
     }
 }

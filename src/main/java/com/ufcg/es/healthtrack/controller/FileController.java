@@ -11,8 +11,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.model.File;
 import com.ufcg.es.healthtrack.model.Usuario;
+import com.ufcg.es.healthtrack.model.dto.VisualizarExameDTO;
 import com.ufcg.es.healthtrack.service.ExameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -84,25 +86,32 @@ public class FileController {
     @GetMapping(value = "/download/{id}")
     public void downloadFile(@PathVariable long id, HttpServletResponse response, ServletRequest servletRequest) throws Exception {
 
-        File file = exameService.downloadFile(id, getAuthorizationHeader(servletRequest));
+        try {
+            File file = exameService.downloadFile(id, getAuthorizationHeader(servletRequest));
 
 //        File file = fileRepository.findById(id).get();
 
 
-        response.setContentType("application/octet-stream");
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=" + file.getName();
-        response.setHeader(headerKey, headerValue);
+            response.setContentType("application/octet-stream");
+            String headerKey = "Content-Disposition";
+            String headerValue = "attachment; filename=" + file.getName();
+            response.setHeader(headerKey, headerValue);
 
-        ServletOutputStream outputStream = response.getOutputStream();
-        outputStream.write(file.getContent());
-        outputStream.close();
+            ServletOutputStream outputStream = response.getOutputStream();
+            outputStream.write(file.getContent());
+            outputStream.close();
+        } catch (HealthTrackSystemException e) {
+            response.sendError(400, e.getMessage());
+        }
 
     }
 
     private String getAuthorizationHeader(ServletRequest servletRequest) {
         return ((HttpServletRequest) servletRequest).getHeader("Authorization");
     }
+
+
+
 
 //    @GetMapping(value = "/download/{email}")
 //	public ResponseEntity<List<File>> downloadFile(@PathVariable String email, HttpServletResponse response) throws Exception {

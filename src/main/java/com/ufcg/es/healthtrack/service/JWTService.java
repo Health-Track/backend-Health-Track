@@ -4,6 +4,7 @@ import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.filter.JWTFilter;
 import com.ufcg.es.healthtrack.model.dto.Credenciais;
 import com.ufcg.es.healthtrack.model.dto.LoginResponse;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
@@ -48,7 +49,7 @@ public class JWTService {
 
     public String getEmailUsuarioLogado(String authorizationHeader) {
         if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
-            throw new SecurityException("Token inexistente ou mal formatado!");
+            throw new HealthTrackSystemException("Token inexistente ou mal formatado!");
         }
 
         // Extraindo apenas o token do cabecalho.
@@ -57,8 +58,8 @@ public class JWTService {
         String subject = null;
         try {
             subject = Jwts.parser().setSigningKey(TOKEN_KEY).parseClaimsJws(token).getBody().getSubject();
-        } catch (SignatureException e) {
-            throw new SecurityException("Token invalido ou expirado!");
+        } catch (SignatureException | ExpiredJwtException e) {
+            throw new HealthTrackSystemException("Token invalido ou expirado!");
         }
         return subject;
     }

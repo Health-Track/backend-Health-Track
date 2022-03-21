@@ -46,10 +46,11 @@ public class ColesterolController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity visualizarExame(@RequestBody VisualizarExameDTO dto, ServletRequest servletRequest) {
+
+    @GetMapping("/{id}")
+    public ResponseEntity visualizarExame(@PathVariable long id, ServletRequest servletRequest) {
         try {
-            ColesterolVisualizarDTO exame = this.exameService.visualizarExameColesterol(dto,getAuthorizationHeader(servletRequest));
+            ColesterolVisualizarDTO exame = this.exameService.visualizarExameColesterol(id,getAuthorizationHeader(servletRequest));
             return new ResponseEntity(exame, HttpStatus.OK);
         } catch (HealthTrackSystemException e) {
             return new ResponseEntity(new ExceptionResponse(e.getMessage()), HttpStatus.BAD_REQUEST);

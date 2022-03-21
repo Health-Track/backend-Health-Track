@@ -49,8 +49,8 @@ public class PressaoService {
         return new PressaoVisualizarDTO(exame.getId(),exame.getSistolica(), exame.getDiastolica(), exame.getObservacoes());
     }
 
-    public PressaoVisualizarDTO visualizarExame(VisualizarExameDTO dto, Usuario usuario) {
-        Optional<Pressao> optExame = this.repository.findByIdAndUsuario(dto.getId(), usuario);
+    public PressaoVisualizarDTO visualizarExame(long id, Usuario usuario) {
+        Optional<Pressao> optExame = this.repository.findByIdAndUsuario(id, usuario);
         if(optExame.isEmpty()) {
             throw new HealthTrackSystemException("Exame não encontrado");
         }

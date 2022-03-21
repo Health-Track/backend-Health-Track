@@ -49,8 +49,8 @@ public class HemogramaService {
                 exame.getIndiceAnisocitose());
     }
 
-    public HemogramaVisualizarDTO visualizarExame(VisualizarExameDTO dto, Usuario usuarioLogado) {
-        Optional<Hemograma> optExame = this.hemogramaRepository.findById(dto.getId());
+    public HemogramaVisualizarDTO visualizarExame(long id, Usuario usuarioLogado) {
+        Optional<Hemograma> optExame = this.hemogramaRepository.findById(id);
         if(optExame.isEmpty()){
             throw new HealthTrackSystemException("Exame não encontrado");
         }

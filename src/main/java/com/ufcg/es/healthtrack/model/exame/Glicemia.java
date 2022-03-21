@@ -38,4 +38,8 @@ public class Glicemia {
     public Usuario getUsuario() {
         return usuario;
     }
+
+    public long getId() {
+        return id;
+    }
 }

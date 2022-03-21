@@ -16,4 +16,6 @@ public interface GlicemiaRepository extends JpaRepository<Glicemia, Long> {
 
     Optional<Glicemia> findByDataMedicaoAndUsuario(LocalDateTime dataMedicao, Usuario usuario);
 
+    Optional<Glicemia> findByIdAndUsuario(long id, Usuario usuario);
+
 }

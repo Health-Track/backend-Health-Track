@@ -2,7 +2,8 @@ package com.ufcg.es.healthtrack.service;
 
 import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.model.Usuario;
-import com.ufcg.es.healthtrack.model.dto.GlicemiaDTO;
+import com.ufcg.es.healthtrack.model.dto.glicemia.GlicemiaDTO;
+import com.ufcg.es.healthtrack.model.dto.glicemia.GlicemiaVisualizarDTO;
 import com.ufcg.es.healthtrack.model.exame.Glicemia;
 import com.ufcg.es.healthtrack.repository.GlicemiaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,30 +26,30 @@ public class GlicemiaService {
         this.repository.save(glicemia);
     }
 
-    public List<GlicemiaDTO> listarTodosPorUsuario(Usuario usuarioLogado) {
+    public List<GlicemiaVisualizarDTO> listarTodosPorUsuario(Usuario usuarioLogado) {
         List<Glicemia> exames = this.repository.findAllByUsuario(usuarioLogado);
-        return transformaParaDTO(exames);
+        return transformaParaVisializarDTO(exames);
     }
 
-    public GlicemiaDTO getExamePorData(LocalDateTime dataMedicao, Usuario usuario) {
-        Optional<Glicemia> optGlicemia = this.repository.findByDataMedicaoAndUsuario(dataMedicao,usuario);
+    public GlicemiaVisualizarDTO getExamePorId(long id, Usuario usuario) {
+        Optional<Glicemia> optGlicemia = this.repository.findByIdAndUsuario(id,usuario);
         if(optGlicemia.isEmpty()) {
             throw new HealthTrackSystemException("O exame informado não foi encontrado.");
         }
-        return transformaParaDTO(optGlicemia.get());
+        return transformaParaVisualizarDTO(optGlicemia.get());
     }
 
-    private List<GlicemiaDTO> transformaParaDTO(List<Glicemia> exames) {
-        List<GlicemiaDTO> examesDTO = new ArrayList<>();
+    private List<GlicemiaVisualizarDTO> transformaParaVisializarDTO(List<Glicemia> exames) {
+        List<GlicemiaVisualizarDTO> examesDTO = new ArrayList<>();
 
         for(Glicemia exame: exames) {
-            examesDTO.add(transformaParaDTO(exame));
+            examesDTO.add(transformaParaVisualizarDTO(exame));
         }
         return examesDTO;
     }
 
-    private GlicemiaDTO transformaParaDTO(Glicemia exame) {
-        return new GlicemiaDTO(exame.getMedicao(), exame.getDataMedicao());
+    private GlicemiaVisualizarDTO transformaParaVisualizarDTO(Glicemia exame) {
+        return new GlicemiaVisualizarDTO(exame.getId(), exame.getMedicao(), exame.getDataMedicao());
     }
 
     private void verificaDataMedicao(LocalDateTime dataMedicao, Usuario usuario){

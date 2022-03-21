@@ -43,10 +43,10 @@ public class PressaoController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity visualizarExame(@RequestBody VisualizarExameDTO dto, ServletRequest servletRequest) {
+    @GetMapping("/{id}")
+    public ResponseEntity visualizarExame(@PathVariable long id, ServletRequest servletRequest) {
         try {
-            PressaoVisualizarDTO exame = this.exameService.visualizarExamePressao(dto,getAuthorizationHeader(servletRequest));
+            PressaoVisualizarDTO exame = this.exameService.visualizarExamePressao(id,getAuthorizationHeader(servletRequest));
             return new ResponseEntity<>(exame,HttpStatus.OK);
         }
         catch (HealthTrackSystemException e) {

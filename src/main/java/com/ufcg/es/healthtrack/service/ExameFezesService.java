@@ -40,8 +40,8 @@ public class ExameFezesService {
         return list;
     }
 
-    public FezesVisualizarDTO visualizarExame(VisualizarExameDTO dto, Usuario usuarioLogado) {
-        Optional<ExameFezes> optExame = this.fezesRepository.findByIdAndUsuario(dto.getId(), usuarioLogado);
+    public FezesVisualizarDTO visualizarExame(long id, Usuario usuarioLogado) {
+        Optional<ExameFezes> optExame = this.fezesRepository.findByIdAndUsuario(id, usuarioLogado);
         if(optExame.isEmpty()) {
             throw new HealthTrackSystemException("Exame não encontrado");
         }
