@@ -18,7 +18,7 @@ public class ExameUrina {
     private String descricao;
     private LocalDateTime data;
     private String aspecto;
-    private String densidade;
+    private double densidade;
     private String reacao;
     private String proteinas;
     private String corposCetonicos;
@@ -27,9 +27,9 @@ public class ExameUrina {
     private String urobilinogenio;
     private String sangueHb;
     private String nitrito;
-    private String hemacias;
-    private String leucocitos;
-    private String celulasEpiteliais;
+    private double hemacias;
+    private double leucocitos;
+    private double celulasEpiteliais;
     private String cilindros;
     private String cristais;
     private String bacterias;
@@ -38,10 +38,10 @@ public class ExameUrina {
 
     public ExameUrina(){}
 
-    public ExameUrina(Usuario user, String descricao, LocalDateTime data, String aspecto, String densidade,
+    public ExameUrina(Usuario user, String descricao, LocalDateTime data, String aspecto, double densidade,
                       String reacao, String proteinas, String corposCetonicos, String glicose, String bilirrubina,
-                      String urobilinogenio, String sangueHb, String nitrito, String hemacias, String leucocitos,
-                      String celulasEpiteliais, String cilindros, String cristais, String bacterias, String filamentoDeMuco,
+                      String urobilinogenio, String sangueHb, String nitrito, double hemacias, double leucocitos,
+                      double celulasEpiteliais, String cilindros, String cristais, String bacterias, String filamentoDeMuco,
                       String outrosElementos) {
         this.usuario = user;
         this.descricao = descricao;
@@ -86,7 +86,7 @@ public class ExameUrina {
         return aspecto;
     }
 
-    public String getDensidade() {
+    public double getDensidade() {
         return densidade;
     }
 
@@ -122,15 +122,15 @@ public class ExameUrina {
         return nitrito;
     }
 
-    public String getHemacias() {
+    public double getHemacias() {
         return hemacias;
     }
 
-    public String getLeucocitos() {
+    public double getLeucocitos() {
         return leucocitos;
     }
 
-    public String getCelulasEpiteliais() {
+    public double getCelulasEpiteliais() {
         return celulasEpiteliais;
     }
 

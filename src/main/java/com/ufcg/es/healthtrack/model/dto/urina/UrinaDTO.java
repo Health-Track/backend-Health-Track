@@ -7,7 +7,7 @@ public class UrinaDTO {
     private String descricao;
     private LocalDateTime data;
     private String aspecto;
-    private String densidade;
+    private double densidade;
     private String reacao;
     private String proteinas;
     private String corposCetonicos;
@@ -16,9 +16,9 @@ public class UrinaDTO {
     private String urobilinogenio;
     private String sangueHb;
     private String nitrito;
-    private String hemacias;
-    private String leucocitos;
-    private String celulasEpiteliais;
+    private double hemacias;
+    private double leucocitos;
+    private double celulasEpiteliais;
     private String cilindros;
     private String cristais;
     private String bacterias;
@@ -37,7 +37,7 @@ public class UrinaDTO {
         return aspecto;
     }
 
-    public String getDensidade() {
+    public double getDensidade() {
         return densidade;
     }
 
@@ -73,15 +73,15 @@ public class UrinaDTO {
         return nitrito;
     }
 
-    public String getHemacias() {
+    public double getHemacias() {
         return hemacias;
     }
 
-    public String getLeucocitos() {
+    public double getLeucocitos() {
         return leucocitos;
     }
 
-    public String getCelulasEpiteliais() {
+    public double getCelulasEpiteliais() {
         return celulasEpiteliais;
     }
 
