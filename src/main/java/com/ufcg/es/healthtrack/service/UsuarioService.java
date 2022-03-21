@@ -2,6 +2,7 @@ package com.ufcg.es.healthtrack.service;
 
 import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.model.Usuario;
+import com.ufcg.es.healthtrack.model.dto.AlterarSenhaDTO;
 import com.ufcg.es.healthtrack.model.dto.UsuarioDTO;
 import com.ufcg.es.healthtrack.repository.UsuarioRepository;
 import com.ufcg.es.healthtrack.util.Util;
@@ -67,4 +68,12 @@ public class UsuarioService {
         return new Usuario(usuarioDTO.getEmail(), usuarioDTO.getNome(), usuarioDTO.getSenha());
     }
 
+    public void alterarSenhaUsuario(AlterarSenhaDTO dto, String emailUsuarioLogado) {
+        Usuario usuario = getUsuario(emailUsuarioLogado);
+        if(!usuario.verificaSenha(dto.getSenhaAntiga())){
+            throw new HealthTrackSystemException("Senha invalida");
+        }
+        usuario.setSenha(dto.getSenhaNova());
+        this.repository.save(usuario);
+    }
 }

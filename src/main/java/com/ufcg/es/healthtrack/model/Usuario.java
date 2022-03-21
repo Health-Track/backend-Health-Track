@@ -24,6 +24,10 @@ public class Usuario {
         return this.senha.equals(senha);
     }
 
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

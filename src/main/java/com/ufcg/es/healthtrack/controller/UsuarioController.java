@@ -1,5 +1,7 @@
 package com.ufcg.es.healthtrack.controller;
 
+import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
+import com.ufcg.es.healthtrack.model.dto.AlterarSenhaDTO;
 import com.ufcg.es.healthtrack.model.dto.ExceptionResponse;
 import com.ufcg.es.healthtrack.model.dto.UsuarioDTO;
 import com.ufcg.es.healthtrack.service.JWTService;
@@ -31,5 +33,21 @@ public class UsuarioController {
             return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.BAD_REQUEST);
         }
 
+    }
+
+    @PutMapping("/alterar")
+    public ResponseEntity alterarSenha(@RequestBody AlterarSenhaDTO dto, ServletRequest servletRequest) {
+        try {
+            String emailUsuarioLogado = this.jwtService.getEmailUsuarioLogado(getAuthorizationHeader(servletRequest));
+            usuarioService.alterarSenhaUsuario(dto,emailUsuarioLogado);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (HealthTrackSystemException e) {
+            return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+    private String getAuthorizationHeader(ServletRequest servletRequest) {
+        return ((HttpServletRequest) servletRequest).getHeader("Authorization");
     }
 }
