@@ -76,4 +76,9 @@ public class UsuarioService {
         usuario.setSenha(dto.getSenhaNova());
         this.repository.save(usuario);
     }
+
+    public void removerUsuario(String emailUsuarioLogado) {
+        Usuario usuario = getUsuario(emailUsuarioLogado);
+        this.repository.delete(usuario);
+    }
 }

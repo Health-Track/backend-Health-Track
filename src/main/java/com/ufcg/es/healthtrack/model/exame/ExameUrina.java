@@ -1,6 +1,8 @@
 package com.ufcg.es.healthtrack.model.exame;
 
 import com.ufcg.es.healthtrack.model.Usuario;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,6 +15,7 @@ public class ExameUrina {
     private Long id;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Usuario usuario;
 
     private String descricao;

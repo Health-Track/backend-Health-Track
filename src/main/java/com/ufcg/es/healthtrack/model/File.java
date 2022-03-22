@@ -1,5 +1,8 @@
 package com.ufcg.es.healthtrack.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -11,6 +14,7 @@ public class File {
     private Long id;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Usuario usuario;
 
     @Column(nullable = false)

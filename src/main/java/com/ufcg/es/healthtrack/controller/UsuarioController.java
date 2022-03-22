@@ -47,6 +47,18 @@ public class UsuarioController {
 
     }
 
+    @DeleteMapping("/remover")
+    public ResponseEntity removerUsuario(ServletRequest servletRequest) {
+        try {
+            String emailUsuarioLogado = this.jwtService.getEmailUsuarioLogado(getAuthorizationHeader(servletRequest));
+            usuarioService.removerUsuario(emailUsuarioLogado);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (HealthTrackSystemException e) {
+            return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
     private String getAuthorizationHeader(ServletRequest servletRequest) {
         return ((HttpServletRequest) servletRequest).getHeader("Authorization");
     }
