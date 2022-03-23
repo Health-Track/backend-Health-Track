@@ -46,6 +46,7 @@ public class ColesterolServiceTest {
         this.colesterolDTO = new ColesterolDTO("descricao", LocalDateTime.now(),1,1,1,1,1);
         this.usuario = new Usuario("email@email.com","meu nome","minha Senha");
         this.colesterol = new Colesterol(usuario,"descricao", LocalDateTime.now(),1,1,1,1,1);
+        this.colesterol.setId(1L);
         this.colesterolList = new ArrayList<>();
         this.colesterolList.add(this.colesterol);
     }

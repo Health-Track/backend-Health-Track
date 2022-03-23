@@ -45,4 +45,8 @@ public class Glicemia {
     public long getId() {
         return id;
     }
+
+    public void setId(long l) {
+        this.id = id;
+    }
 }
