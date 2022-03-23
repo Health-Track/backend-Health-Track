@@ -46,6 +46,7 @@ public class GlicemiaServiceTest {
         this.glicemiaDTO = new GlicemiaDTO(1,LocalDateTime.now());
         this.usuario = new Usuario("email@email.com","meu nome","minha Senha");
         this.glicemia = new Glicemia(usuario,1,LocalDateTime.now());
+        this.glicemia.setId(1L);
         this.glicemiaList = new ArrayList<>();
         this.glicemiaList.add(this.glicemia);
     }
