@@ -49,7 +49,7 @@ public class HemogramaService {
     }
 
     public HemogramaVisualizarDTO visualizarExame(long id, Usuario usuarioLogado) {
-        Optional<Hemograma> optExame = this.hemogramaRepository.findById(id);
+        Optional<Hemograma> optExame = this.hemogramaRepository.findByIdAndUsuario(id,usuarioLogado);
         if(optExame.isEmpty()){
             throw new HealthTrackSystemException("Exame não encontrado");
         }
