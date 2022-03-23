@@ -11,7 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @Suite.SuiteClasses({
         ColesterolServiceTest.class,
         ExameFezesServiceTest.class,
-        ExameUrinaServiceTest.class})
+        ExameUrinaServiceTest.class,
+        GlicemiaServiceTest.class})
 class HealthtrackApplicationTests {
 
 

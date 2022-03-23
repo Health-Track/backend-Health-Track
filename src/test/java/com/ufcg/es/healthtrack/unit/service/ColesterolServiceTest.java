@@ -51,7 +51,7 @@ public class ColesterolServiceTest {
     }
 
     @Test
-    public void adicionaDadosDeveExecutarSaveApenasUmVez() {
+    public void adicionaExameDeveExecutarSaveApenasUmVez() {
         colesterolService.adicionarDados(colesterolDTO,usuario);
         verify(colesterolRepository, times(UMA_CHAMADA)).save(any());
     }

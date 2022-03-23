@@ -2,9 +2,7 @@ package com.ufcg.es.healthtrack.unit.service;
 
 import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.model.Usuario;
-import com.ufcg.es.healthtrack.model.dto.colesterol.ColesterolDTO;
 import com.ufcg.es.healthtrack.model.dto.urina.UrinaDTO;
-import com.ufcg.es.healthtrack.model.exame.Colesterol;
 import com.ufcg.es.healthtrack.model.exame.ExameUrina;
 import com.ufcg.es.healthtrack.repository.UrinaRepository;
 import com.ufcg.es.healthtrack.service.ExameUrinaService;
@@ -52,7 +50,7 @@ public class ExameUrinaServiceTest {
     }
 
     @Test
-    public void adicionaDadosDeveExecutarSaveApenasUmVez() {
+    public void adicionaExameDeveExecutarSaveApenasUmVez() {
         exameUrinaService.adicionaExame(urinaDTO,usuario);
         verify(urinaRepository, times(UMA_CHAMADA)).save(any());
     }

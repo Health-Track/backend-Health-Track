@@ -52,7 +52,7 @@ public class ExameFezesServiceTest {
     }
 
     @Test
-    public void adicionaDadosDeveExecutarSaveApenasUmVez() {
+    public void adicionaExameDeveExecutarSaveApenasUmVez() {
         exameFezesService.adicionaExame(fezesDTO,usuario);
         verify(fezesRepository, times(UMA_CHAMADA)).save(any());
     }
