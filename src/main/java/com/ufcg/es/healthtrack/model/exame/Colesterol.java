@@ -46,56 +46,28 @@ public class Colesterol {
         this.relacaoTotalHDL = relacaoTotalHDL;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
     public String getDescricao() {
         return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 
     public int getColesterolTotal() {
         return colesterolTotal;
     }
 
-    public void setColesterolTotal(int colesterolTotal) {
-        this.colesterolTotal = colesterolTotal;
-    }
-
     public int getColesterolHDL() {
         return colesterolHDL;
-    }
-
-    public void setColesterolHDL(int colesterolHDL) {
-        this.colesterolHDL = colesterolHDL;
     }
 
     public int getColesterolNaoHDL() {
         return colesterolNaoHDL;
     }
 
-    public void setColesterolNaoHDL(int colesterolNaoHDL) {
-        this.colesterolNaoHDL = colesterolNaoHDL;
-    }
-
     public int getColesterolLDL() {
         return colesterolLDL;
     }
 
-    public void setColesterolLDL(int colesterolLDL) {
-        this.colesterolLDL = colesterolLDL;
-    }
-
     public double getRelacaoTotalHDL() {
         return relacaoTotalHDL;
-    }
-
-    public void setRelacaoTotalHDL(double relacaoTotalHDL) {
-        this.relacaoTotalHDL = relacaoTotalHDL;
     }
 
     public LocalDateTime getDataMedicao() {

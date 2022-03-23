@@ -73,10 +73,6 @@ public class ExameUrina {
         return id;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
     public String getDescricao() {
         return descricao;
     }

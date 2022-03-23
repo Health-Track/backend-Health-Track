@@ -40,12 +40,9 @@ public class Pressao {
     public int getSistolica(){
         return sistolica;
     }
+
     public int getDiastolica() {
         return diastolica;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
     }
 
     public long getId() {
