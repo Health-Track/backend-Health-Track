@@ -146,4 +146,8 @@ public class Hemograma {
     public Long getId() {
         return id;
     }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
