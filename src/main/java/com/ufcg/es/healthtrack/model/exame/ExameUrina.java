@@ -156,4 +156,8 @@ public class ExameUrina {
     public String getOutrosElementos() {
         return outrosElementos;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

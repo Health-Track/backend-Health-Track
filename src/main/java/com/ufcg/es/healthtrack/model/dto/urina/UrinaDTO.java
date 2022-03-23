@@ -25,6 +25,29 @@ public class UrinaDTO {
     private String filamentoDeMuco;
     private String outrosElementos;
 
+    public UrinaDTO(String descricao, LocalDateTime data, String aspecto, double densidade, String reacao, String proteinas, String corposCetonicos, String glicose, String bilirrubina, String urobilinogenio, String sangueHb, String nitrito, double hemacias, double leucocitos, double celulasEpiteliais, String cilindros, String cristais, String bacterias, String filamentoDeMuco, String outrosElementos) {
+        this.descricao = descricao;
+        this.data = data;
+        this.aspecto = aspecto;
+        this.densidade = densidade;
+        this.reacao = reacao;
+        this.proteinas = proteinas;
+        this.corposCetonicos = corposCetonicos;
+        this.glicose = glicose;
+        this.bilirrubina = bilirrubina;
+        this.urobilinogenio = urobilinogenio;
+        this.sangueHb = sangueHb;
+        this.nitrito = nitrito;
+        this.hemacias = hemacias;
+        this.leucocitos = leucocitos;
+        this.celulasEpiteliais = celulasEpiteliais;
+        this.cilindros = cilindros;
+        this.cristais = cristais;
+        this.bacterias = bacterias;
+        this.filamentoDeMuco = filamentoDeMuco;
+        this.outrosElementos = outrosElementos;
+    }
+
     public String getDescricao() {
         return descricao;
     }
