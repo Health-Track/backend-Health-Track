@@ -14,7 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
         ExameUrinaServiceTest.class,
         GlicemiaServiceTest.class,
         HemogramaServiceTest.class,
-        PressaoServiceTest.class})
+        PressaoServiceTest.class,
+        UsuarioServiceTest.class})
 class HealthtrackApplicationTests {
 
 

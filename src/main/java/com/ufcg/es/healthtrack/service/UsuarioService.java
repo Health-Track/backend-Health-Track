@@ -24,8 +24,9 @@ public class UsuarioService {
     }
 
     public Usuario getUsuario(String email){
-        if(usuarioExiste(email)) {
-            return repository.findById(email).get();
+        Optional<Usuario> optUsuario = repository.findById(email);
+        if(optUsuario.isPresent()) {
+            return optUsuario.get();
         } else {
             throw new HealthTrackSystemException("O usuário não existe");
         }

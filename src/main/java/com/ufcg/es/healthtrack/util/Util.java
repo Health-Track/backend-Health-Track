@@ -2,7 +2,6 @@ package com.ufcg.es.healthtrack.util;
 
 public class Util {
 
-//    private static final String EMAIL_REGEX = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
     private static final String EMAIL_REGEX = "^([a-zA-Z0-9\\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$";
 
     private static final String SENHA_REGEX = "^.{8,}$";
