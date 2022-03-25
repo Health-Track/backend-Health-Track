@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.ufcg.es.healthtrack.controller.exame.ColesterolController</OriginalElement>
+  <nodes>
+    <node x="2381.0" y="33.0">com.ufcg.es.healthtrack.service.PressaoService</node>
+    <node x="2809.75" y="553.0">com.ufcg.es.healthtrack.controller.UsuarioController</node>
+    <node x="275.9221698113208" y="944.0">com.ufcg.es.healthtrack.controller.exame.ColesterolController</node>
+    <node x="2105.9221698113206" y="944.0">com.ufcg.es.healthtrack.controller.exame.GlicemiaController</node>
+    <node x="2465.9221698113206" y="944.0">com.ufcg.es.healthtrack.controller.exame.HemogramaController</node>
+    <node x="1939.0" y="44.0">com.ufcg.es.healthtrack.service.HemogramaService</node>
+    <node x="642.9221698113207" y="944.0">com.ufcg.es.healthtrack.controller.exame.FezesController</node>
+    <node x="1629.0" y="66.0">com.ufcg.es.healthtrack.service.FileService</node>
+    <node x="1260.0" y="44.0">com.ufcg.es.healthtrack.service.ExameFezesService</node>
+    <node x="1401.9221698113206" y="944.0">com.ufcg.es.healthtrack.controller.exame.PressaoController</node>
+    <node x="830.0" y="33.0">com.ufcg.es.healthtrack.service.ColesterolService</node>
+    <node x="2857.0" y="0.0">com.ufcg.es.healthtrack.service.UsuarioService</node>
+    <node x="369.0" y="22.0">com.ufcg.es.healthtrack.service.GlicemiaService</node>
+    <node x="1326.9009433962265" y="344.0">com.ufcg.es.healthtrack.service.ExameService</node>
+    <node x="992.9221698113207" y="944.0">com.ufcg.es.healthtrack.controller.FileController</node>
+    <node x="0.0" y="44.0">com.ufcg.es.healthtrack.service.ExameUrinaService</node>
+    <node x="1755.9221698113206" y="944.0">com.ufcg.es.healthtrack.controller.exame.UrinaController</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.ufcg.es.healthtrack.controller.exame.PressaoController" target="com.ufcg.es.healthtrack.service.ExameService" relationship="DEPENDENCY">
+      <point x="83.5" y="-61.0" />
+      <point x="1652.4221698113206" y="914.0" />
+      <point x="2276.125" y="914.0" />
+      <point x="2276.125" y="904.0" />
+      <point x="1647.9009433962265" y="904.0" />
+      <point x="107.0" y="270.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.service.ExameService" target="com.ufcg.es.healthtrack.service.HemogramaService" relationship="DEPENDENCY">
+      <point x="107.0" y="-270.0" />
+      <point x="1647.9009433962265" y="324.0" />
+      <point x="1545.9009433962265" y="324.0" />
+      <point x="1545.9009433962265" y="274.0" />
+      <point x="2255.5" y="274.0" />
+      <point x="105.5" y="83.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.service.ExameService" target="com.ufcg.es.healthtrack.service.ExameUrinaService" relationship="TO_ONE">
+      <point x="-107.0" y="-270.0" />
+      <point x="1433.9009433962265" y="324.0" />
+      <point x="1535.9009433962265" y="324.0" />
+      <point x="1535.9009433962265" y="284.0" />
+      <point x="87.24999999999977" y="284.0" />
+      <point x="-87.25" y="83.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.controller.exame.HemogramaController" target="com.ufcg.es.healthtrack.service.ExameService" relationship="DEPENDENCY">
+      <point x="90.25" y="-61.0" />
+      <point x="2736.6721698113206" y="914.0" />
+      <point x="2276.125" y="914.0" />
+      <point x="2276.125" y="904.0" />
+      <point x="1647.9009433962265" y="904.0" />
+      <point x="107.0" y="270.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.service.ExameService" target="com.ufcg.es.healthtrack.service.FileService" relationship="DEPENDENCY">
+      <point x="107.0" y="-270.0" />
+      <point x="1647.9009433962265" y="324.0" />
+      <point x="1545.9009433962265" y="324.0" />
+      <point x="1545.9009433962265" y="274.0" />
+      <point x="1846.5" y="274.0" />
+      <point x="72.5" y="61.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.controller.exame.FezesController" target="com.ufcg.es.healthtrack.service.ExameService" relationship="DEPENDENCY">
+      <point x="82.5" y="-61.0" />
+      <point x="890.4221698113207" y="914.0" />
+      <point x="2276.125" y="914.0" />
+      <point x="2276.125" y="904.0" />
+      <point x="1647.9009433962265" y="904.0" />
+      <point x="107.0" y="270.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.controller.exame.PressaoController" target="com.ufcg.es.healthtrack.service.ExameService" relationship="TO_ONE">
+      <point x="-83.5" y="-61.0" />
+      <point x="1485.4221698113206" y="924.0" />
+      <point x="726.5283018867924" y="924.0" />
+      <point x="726.5283018867924" y="904.0" />
+      <point x="1433.9009433962265" y="904.0" />
+      <point x="-107.0" y="270.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.service.ExameService" target="com.ufcg.es.healthtrack.service.HemogramaService" relationship="TO_ONE">
+      <point x="-107.0" y="-270.0" />
+      <point x="1433.9009433962265" y="324.0" />
+      <point x="1535.9009433962265" y="324.0" />
+      <point x="1535.9009433962265" y="284.0" />
+      <point x="2044.5" y="284.0" />
+      <point x="-105.5" y="83.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.service.ExameService" target="com.ufcg.es.healthtrack.service.ExameUrinaService" relationship="DEPENDENCY">
+      <point x="107.0" y="-270.0" />
+      <point x="1647.9009433962265" y="324.0" />
+      <point x="1545.9009433962265" y="324.0" />
+      <point x="1545.9009433962265" y="274.0" />
+      <point x="261.7499999999998" y="274.0" />
+      <point x="87.25" y="83.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.service.ExameService" target="com.ufcg.es.healthtrack.service.FileService" relationship="TO_ONE">
+      <point x="-107.0" y="-270.0" />
+      <point x="1433.9009433962265" y="324.0" />
+      <point x="1535.9009433962265" y="324.0" />
+      <point x="1535.9009433962265" y="284.0" />
+      <point x="1701.5" y="284.0" />
+      <point x="-72.5" y="61.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.service.ExameService" target="com.ufcg.es.healthtrack.service.GlicemiaService" relationship="TO_ONE">
+      <point x="-107.0" y="-270.0" />
+      <point x="1433.9009433962265" y="324.0" />
+      <point x="1535.9009433962265" y="324.0" />
+      <point x="1535.9009433962265" y="284.0" />
+      <point x="479.2499999999998" y="284.0" />
+      <point x="-110.25" y="105.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.service.ExameService" target="com.ufcg.es.healthtrack.service.ColesterolService" relationship="DEPENDENCY">
+      <point x="107.0" y="-270.0" />
+      <point x="1647.9009433962265" y="324.0" />
+      <point x="1545.9009433962265" y="324.0" />
+      <point x="1545.9009433962265" y="274.0" />
+      <point x="1137.5" y="274.0" />
+      <point x="102.5" y="94.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.controller.FileController" target="com.ufcg.es.healthtrack.service.ExameService" relationship="DEPENDENCY">
+      <point x="97.25" y="-61.0" />
+      <point x="1284.6721698113206" y="914.0" />
+      <point x="2276.125" y="914.0" />
+      <point x="2276.125" y="904.0" />
+      <point x="1647.9009433962265" y="904.0" />
+      <point x="107.0" y="270.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.service.ExameService" target="com.ufcg.es.healthtrack.service.ColesterolService" relationship="TO_ONE">
+      <point x="-107.0" y="-270.0" />
+      <point x="1433.9009433962265" y="324.0" />
+      <point x="1535.9009433962265" y="324.0" />
+      <point x="1535.9009433962265" y="284.0" />
+      <point x="932.5" y="284.0" />
+      <point x="-102.5" y="94.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.service.ExameService" target="com.ufcg.es.healthtrack.service.PressaoService" relationship="DEPENDENCY">
+      <point x="107.0" y="-270.0" />
+      <point x="1647.9009433962265" y="324.0" />
+      <point x="1545.9009433962265" y="324.0" />
+      <point x="1545.9009433962265" y="274.0" />
+      <point x="2705.75" y="274.0" />
+      <point x="108.25" y="94.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.controller.FileController" target="com.ufcg.es.healthtrack.service.ExameService" relationship="TO_ONE">
+      <point x="-97.25" y="-61.0" />
+      <point x="1090.1721698113206" y="924.0" />
+      <point x="726.5283018867924" y="924.0" />
+      <point x="726.5283018867924" y="904.0" />
+      <point x="1433.9009433962265" y="904.0" />
+      <point x="-107.0" y="270.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.service.ExameService" target="com.ufcg.es.healthtrack.service.PressaoService" relationship="TO_ONE">
+      <point x="-107.0" y="-270.0" />
+      <point x="1433.9009433962265" y="324.0" />
+      <point x="1535.9009433962265" y="324.0" />
+      <point x="1535.9009433962265" y="284.0" />
+      <point x="2489.25" y="284.0" />
+      <point x="-108.25" y="94.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.service.ExameService" target="com.ufcg.es.healthtrack.service.GlicemiaService" relationship="DEPENDENCY">
+      <point x="107.0" y="-270.0" />
+      <point x="1647.9009433962265" y="324.0" />
+      <point x="1545.9009433962265" y="324.0" />
+      <point x="1545.9009433962265" y="274.0" />
+      <point x="699.75" y="274.0" />
+      <point x="110.25" y="105.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.service.ExameService" target="com.ufcg.es.healthtrack.service.ExameFezesService" relationship="DEPENDENCY">
+      <point x="107.0" y="-270.0" />
+      <point x="1647.9009433962265" y="324.0" />
+      <point x="1545.9009433962265" y="324.0" />
+      <point x="1545.9009433962265" y="274.0" />
+      <point x="1521.75" y="274.0" />
+      <point x="87.25" y="83.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.controller.exame.ColesterolController" target="com.ufcg.es.healthtrack.service.ExameService" relationship="TO_ONE">
+      <point x="-86.75" y="-61.0" />
+      <point x="362.6721698113208" y="924.0" />
+      <point x="726.5283018867924" y="924.0" />
+      <point x="726.5283018867924" y="904.0" />
+      <point x="1433.9009433962265" y="904.0" />
+      <point x="-107.0" y="270.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.controller.exame.FezesController" target="com.ufcg.es.healthtrack.service.ExameService" relationship="TO_ONE">
+      <point x="-82.5" y="-61.0" />
+      <point x="725.4221698113207" y="924.0" />
+      <point x="726.5283018867924" y="924.0" />
+      <point x="726.5283018867924" y="904.0" />
+      <point x="1433.9009433962265" y="904.0" />
+      <point x="-107.0" y="270.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.controller.exame.ColesterolController" target="com.ufcg.es.healthtrack.service.ExameService" relationship="DEPENDENCY">
+      <point x="86.75" y="-61.0" />
+      <point x="536.1721698113208" y="914.0" />
+      <point x="2276.125" y="914.0" />
+      <point x="2276.125" y="904.0" />
+      <point x="1647.9009433962265" y="904.0" />
+      <point x="107.0" y="270.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.service.ExameService" target="com.ufcg.es.healthtrack.service.ExameFezesService" relationship="TO_ONE">
+      <point x="-107.0" y="-270.0" />
+      <point x="1433.9009433962265" y="324.0" />
+      <point x="1535.9009433962265" y="324.0" />
+      <point x="1535.9009433962265" y="284.0" />
+      <point x="1347.25" y="284.0" />
+      <point x="-87.25" y="83.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.controller.UsuarioController" target="com.ufcg.es.healthtrack.service.UsuarioService" relationship="TO_ONE">
+      <point x="-94.5" y="-61.0" />
+      <point x="2904.25" y="304.0" />
+      <point x="3065.9811320754716" y="304.0" />
+      <point x="3065.9811320754716" y="284.0" />
+      <point x="2935.75" y="284.0" />
+      <point x="-78.75" y="127.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.controller.exame.GlicemiaController" target="com.ufcg.es.healthtrack.service.ExameService" relationship="DEPENDENCY">
+      <point x="85.0" y="-61.0" />
+      <point x="2360.9221698113206" y="914.0" />
+      <point x="2276.125" y="914.0" />
+      <point x="2276.125" y="904.0" />
+      <point x="1647.9009433962265" y="904.0" />
+      <point x="107.0" y="270.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.service.ExameService" target="com.ufcg.es.healthtrack.service.UsuarioService" relationship="TO_ONE">
+      <point x="-107.0" y="-270.0" />
+      <point x="1433.9009433962265" y="324.0" />
+      <point x="1535.9009433962265" y="324.0" />
+      <point x="1535.9009433962265" y="294.0" />
+      <point x="3065.9811320754716" y="294.0" />
+      <point x="3065.9811320754716" y="284.0" />
+      <point x="2935.75" y="284.0" />
+      <point x="-78.75" y="127.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.controller.exame.UrinaController" target="com.ufcg.es.healthtrack.service.ExameService" relationship="TO_ONE">
+      <point x="-82.5" y="-61.0" />
+      <point x="1838.4221698113206" y="924.0" />
+      <point x="726.5283018867924" y="924.0" />
+      <point x="726.5283018867924" y="904.0" />
+      <point x="1433.9009433962265" y="904.0" />
+      <point x="-107.0" y="270.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.controller.exame.HemogramaController" target="com.ufcg.es.healthtrack.service.ExameService" relationship="TO_ONE">
+      <point x="-90.25" y="-61.0" />
+      <point x="2556.1721698113206" y="924.0" />
+      <point x="726.5283018867924" y="924.0" />
+      <point x="726.5283018867924" y="904.0" />
+      <point x="1433.9009433962265" y="904.0" />
+      <point x="-107.0" y="270.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.controller.UsuarioController" target="com.ufcg.es.healthtrack.service.UsuarioService" relationship="DEPENDENCY">
+      <point x="94.5" y="-61.0" />
+      <point x="3093.25" y="304.0" />
+      <point x="3075.9811320754716" y="304.0" />
+      <point x="3075.9811320754716" y="294.0" />
+      <point x="3093.25" y="294.0" />
+      <point x="78.75" y="127.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.service.ExameService" target="com.ufcg.es.healthtrack.service.UsuarioService" relationship="DEPENDENCY">
+      <point x="107.0" y="-270.0" />
+      <point x="1647.9009433962265" y="324.0" />
+      <point x="1545.9009433962265" y="324.0" />
+      <point x="1545.9009433962265" y="314.0" />
+      <point x="3075.9811320754716" y="314.0" />
+      <point x="3075.9811320754716" y="294.0" />
+      <point x="3093.25" y="294.0" />
+      <point x="78.75" y="127.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.controller.exame.GlicemiaController" target="com.ufcg.es.healthtrack.service.ExameService" relationship="TO_ONE">
+      <point x="-85.0" y="-61.0" />
+      <point x="2190.9221698113206" y="924.0" />
+      <point x="726.5283018867924" y="924.0" />
+      <point x="726.5283018867924" y="904.0" />
+      <point x="1433.9009433962265" y="904.0" />
+      <point x="-107.0" y="270.0" />
+    </edge>
+    <edge source="com.ufcg.es.healthtrack.controller.exame.UrinaController" target="com.ufcg.es.healthtrack.service.ExameService" relationship="DEPENDENCY">
+      <point x="82.5" y="-61.0" />
+      <point x="2003.4221698113206" y="914.0" />
+      <point x="2276.125" y="914.0" />
+      <point x="2276.125" y="904.0" />
+      <point x="1647.9009433962265" y="904.0" />
+      <point x="107.0" y="270.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.7168329177057357" showDependencies="true" x="587.0707949208559" y="255.67472603931117" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
