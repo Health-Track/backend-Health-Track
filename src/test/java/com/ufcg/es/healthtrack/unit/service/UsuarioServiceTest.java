@@ -129,7 +129,7 @@ public class UsuarioServiceTest {
     }
 
     @Test
-    public void getUsuarioNãoCadastrado() {
+    public void getUsuarioNaoCadastrado() {
         when(usuarioRepository.findById(usuarioDTOValido.getEmail())).thenReturn(Optional.empty());
         assertThrows(HealthTrackSystemException.class, () -> usuarioService.getUsuario(usuarioDTOValido.getEmail()));
         verify(usuarioRepository, times(UMA_CHAMADA)).findById(any());
