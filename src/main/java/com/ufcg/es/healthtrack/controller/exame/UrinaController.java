@@ -23,7 +23,7 @@ public class UrinaController {
     private ExameService exameService;
 
     @PostMapping
-    public ResponseEntity createExameUrina(@RequestBody UrinaDTO urinaDTO, ServletRequest servletRequest) {
+    public ResponseEntity cadastrar(@RequestBody UrinaDTO urinaDTO, ServletRequest servletRequest) {
         try {
             this.exameService.cadastrarExameUrina(urinaDTO, Util.getAuthorizationHeader(servletRequest));
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -33,7 +33,7 @@ public class UrinaController {
     }
 
     @GetMapping(value = "/listar")
-    public ResponseEntity listExameUrina(ServletRequest servletRequest) {
+    public ResponseEntity listarTodos(ServletRequest servletRequest) {
         try {
             List<UrinaVisualizarDTO> exames = this.exameService.listarTodosExamesUrina(Util.getAuthorizationHeader(servletRequest));
             return new ResponseEntity<>(exames, HttpStatus.OK);

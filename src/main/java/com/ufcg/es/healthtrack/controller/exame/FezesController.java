@@ -25,11 +25,8 @@ public class FezesController {
     @Autowired
     private ExameService exameService;
 
-    @Autowired
-    private FezesRepository exameFezesRepository;
-
     @PostMapping
-    public ResponseEntity createExameFezes(@RequestBody FezesDTO exameDTO, ServletRequest servletRequest) {
+    public ResponseEntity cadastrar(@RequestBody FezesDTO exameDTO, ServletRequest servletRequest) {
           try {
             this.exameService.cadastrarExameFezes(exameDTO, Util.getAuthorizationHeader(servletRequest));
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -39,7 +36,7 @@ public class FezesController {
     }
 
     @GetMapping(value = "/listar")
-    public ResponseEntity listExameFezes(ServletRequest servletRequest) {
+    public ResponseEntity listarTodos(ServletRequest servletRequest) {
         try {
             List<FezesVisualizarDTO> exames = this.exameService.listarTodosExamesFezes(Util.getAuthorizationHeader(servletRequest));
             return new ResponseEntity<>(exames, HttpStatus.OK);

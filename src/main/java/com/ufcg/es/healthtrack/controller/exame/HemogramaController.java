@@ -24,7 +24,7 @@ public class HemogramaController {
     private ExameService exameService;
 
     @PostMapping
-    public ResponseEntity createExameSangue(@RequestBody HemogramaDTO exame, ServletRequest servletRequest) {
+    public ResponseEntity cadastrar(@RequestBody HemogramaDTO exame, ServletRequest servletRequest) {
         try {
             this.exameService.cadastrarExameHemograma(exame, Util.getAuthorizationHeader(servletRequest));
             return new ResponseEntity(HttpStatus.CREATED);
@@ -34,7 +34,7 @@ public class HemogramaController {
     }
 
     @GetMapping("/listar")
-    public ResponseEntity listExameSangue(ServletRequest servletRequest) {
+    public ResponseEntity listarTodos(ServletRequest servletRequest) {
         try {
             List<HemogramaVisualizarDTO> list = this.exameService.listarTodosExamesHemograma(Util.getAuthorizationHeader(servletRequest));
             return new ResponseEntity(list,HttpStatus.OK);
