@@ -66,7 +66,7 @@ public class FileController {
     }
 
     @GetMapping("/listar")
-    public ResponseEntity listar(ServletRequest servletRequest) {
+    public ResponseEntity listarTodos(ServletRequest servletRequest) {
         try {
             List<FileDTO> exames = this.exameService.listarTodosExamesPDFs(Util.getAuthorizationHeader(servletRequest));
             return new ResponseEntity<>(exames, HttpStatus.OK);

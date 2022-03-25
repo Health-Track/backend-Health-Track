@@ -42,7 +42,7 @@ public class GlicemiaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity visializarExame(@PathVariable long id , ServletRequest servletRequest) {
+    public ResponseEntity visualizarExame(@PathVariable long id , ServletRequest servletRequest) {
         try {
             return new ResponseEntity<>(this.exameService.visualizarExameGlicemia(id, Util.getAuthorizationHeader(servletRequest)), HttpStatus.OK);
         } catch (HealthTrackSystemException e) {
