@@ -28,11 +28,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("exame/pdf")
 public class FileController {
 
-    //localhost:8080/api/v1/exame/pdf/upload
-    //localhost:8080/api/v1/exame/pdf/download/{id}"
-    //localhost:8080/api/v1/exame/pdf/{email}
-
-
     @Autowired
     private ExameService exameService;
 
@@ -46,17 +41,6 @@ public class FileController {
         } catch (SecurityException | IOException e) {
 
         }
-
-
-//        String fileName = StringUtils.cleanPath(multipartfile.getOriginalFilename());
-//        File file = new File();
-//        Usuario user = this.userRepository.findById(email).get();
-//        file.setUser(user);
-//        file.setName(fileName);
-//        file.setContent(multipartfile.getBytes());
-//        file.setSize(multipartfile.getSize());
-//        file.setUploadTime(LocalDateTime.now());
-//        fileRepository.save(file);
     }
 
 
@@ -65,9 +49,6 @@ public class FileController {
 
         try {
             File file = exameService.downloadFile(id, getAuthorizationHeader(servletRequest));
-
-//        File file = fileRepository.findById(id).get();
-
 
             response.setContentType("application/octet-stream");
             String headerKey = "Content-Disposition";
@@ -96,16 +77,4 @@ public class FileController {
     private String getAuthorizationHeader(ServletRequest servletRequest) {
         return ((HttpServletRequest) servletRequest).getHeader("Authorization");
     }
-
-
-
-
-//    @GetMapping(value = "/download/{email}")
-//	public ResponseEntity<List<File>> downloadFile(@PathVariable String email, HttpServletResponse response) throws Exception {
-//		ArrayList<File> result = (ArrayList<File>) fileRepository.findByEmail(email);
-//		return ResponseEntity.ok(result);
-//	}
-
-
-
 }
