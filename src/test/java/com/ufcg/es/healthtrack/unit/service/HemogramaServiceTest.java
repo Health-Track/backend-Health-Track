@@ -2,9 +2,7 @@ package com.ufcg.es.healthtrack.unit.service;
 
 import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.model.Usuario;
-import com.ufcg.es.healthtrack.model.dto.glicemia.GlicemiaDTO;
 import com.ufcg.es.healthtrack.model.dto.hemograma.HemogramaDTO;
-import com.ufcg.es.healthtrack.model.exame.Glicemia;
 import com.ufcg.es.healthtrack.model.exame.Hemograma;
 import com.ufcg.es.healthtrack.repository.HemogramaRepository;
 import com.ufcg.es.healthtrack.service.HemogramaService;

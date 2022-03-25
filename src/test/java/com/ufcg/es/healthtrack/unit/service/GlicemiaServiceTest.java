@@ -3,8 +3,6 @@ package com.ufcg.es.healthtrack.unit.service;
 import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.model.Usuario;
 import com.ufcg.es.healthtrack.model.dto.glicemia.GlicemiaDTO;
-import com.ufcg.es.healthtrack.model.dto.urina.UrinaDTO;
-import com.ufcg.es.healthtrack.model.exame.ExameUrina;
 import com.ufcg.es.healthtrack.model.exame.Glicemia;
 import com.ufcg.es.healthtrack.repository.GlicemiaRepository;
 import com.ufcg.es.healthtrack.service.GlicemiaService;
