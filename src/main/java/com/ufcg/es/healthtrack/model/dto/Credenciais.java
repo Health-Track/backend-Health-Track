@@ -11,6 +11,7 @@ public class Credenciais {
         this.senha = senha;
     }
 
+
     public String getEmail() {
         return email;
     }
