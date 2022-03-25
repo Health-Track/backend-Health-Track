@@ -6,6 +6,7 @@ import com.ufcg.es.healthtrack.model.dto.ExceptionResponse;
 import com.ufcg.es.healthtrack.model.dto.UsuarioDTO;
 import com.ufcg.es.healthtrack.service.JWTService;
 import com.ufcg.es.healthtrack.service.UsuarioService;
+import com.ufcg.es.healthtrack.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +39,7 @@ public class UsuarioController {
     @PutMapping("/alterar")
     public ResponseEntity alterarSenha(@RequestBody AlterarSenhaDTO dto, ServletRequest servletRequest) {
         try {
-            String emailUsuarioLogado = this.jwtService.getEmailUsuarioLogado(getAuthorizationHeader(servletRequest));
+            String emailUsuarioLogado = this.jwtService.getEmailUsuarioLogado(Util.getAuthorizationHeader(servletRequest));
             usuarioService.alterarSenhaUsuario(dto,emailUsuarioLogado);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (HealthTrackSystemException e) {
@@ -50,16 +51,12 @@ public class UsuarioController {
     @DeleteMapping("/remover")
     public ResponseEntity removerUsuario(ServletRequest servletRequest) {
         try {
-            String emailUsuarioLogado = this.jwtService.getEmailUsuarioLogado(getAuthorizationHeader(servletRequest));
+            String emailUsuarioLogado = this.jwtService.getEmailUsuarioLogado(Util.getAuthorizationHeader(servletRequest));
             usuarioService.removerUsuario(emailUsuarioLogado);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (HealthTrackSystemException e) {
             return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.BAD_REQUEST);
         }
 
-    }
-
-    private String getAuthorizationHeader(ServletRequest servletRequest) {
-        return ((HttpServletRequest) servletRequest).getHeader("Authorization");
     }
 }

@@ -5,6 +5,7 @@ import com.ufcg.es.healthtrack.model.dto.ExceptionResponse;
 import com.ufcg.es.healthtrack.model.dto.hemograma.HemogramaDTO;
 import com.ufcg.es.healthtrack.model.dto.hemograma.HemogramaVisualizarDTO;
 import com.ufcg.es.healthtrack.service.ExameService;
+import com.ufcg.es.healthtrack.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class HemogramaController {
     @PostMapping
     public ResponseEntity createExameSangue(@RequestBody HemogramaDTO exame, ServletRequest servletRequest) {
         try {
-            this.exameService.cadastrarExameHemograma(exame, getAuthorizationHeader(servletRequest));
+            this.exameService.cadastrarExameHemograma(exame, Util.getAuthorizationHeader(servletRequest));
             return new ResponseEntity(HttpStatus.CREATED);
         } catch (HealthTrackSystemException e) {
             return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.BAD_REQUEST);
@@ -35,7 +36,7 @@ public class HemogramaController {
     @GetMapping("/listar")
     public ResponseEntity listExameSangue(ServletRequest servletRequest) {
         try {
-            List<HemogramaVisualizarDTO> list = this.exameService.listarTodosExamesHemograma(getAuthorizationHeader(servletRequest));
+            List<HemogramaVisualizarDTO> list = this.exameService.listarTodosExamesHemograma(Util.getAuthorizationHeader(servletRequest));
             return new ResponseEntity(list,HttpStatus.OK);
         } catch (HealthTrackSystemException e) {
             return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.BAD_REQUEST);
@@ -45,14 +46,10 @@ public class HemogramaController {
     @GetMapping("/{id}")
     public ResponseEntity visualizarExame(@PathVariable long id, ServletRequest servletRequest) {
         try {
-            HemogramaVisualizarDTO exame = this.exameService.visualizarExamesHemograma(id,getAuthorizationHeader(servletRequest));
+            HemogramaVisualizarDTO exame = this.exameService.visualizarExamesHemograma(id, Util.getAuthorizationHeader(servletRequest));
             return new ResponseEntity(exame,HttpStatus.OK);
         } catch (HealthTrackSystemException e) {
             return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.BAD_REQUEST);
         }
-    }
-
-    private String getAuthorizationHeader(ServletRequest servletRequest) {
-        return ((HttpServletRequest) servletRequest).getHeader("Authorization");
     }
 }

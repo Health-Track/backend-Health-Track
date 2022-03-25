@@ -12,6 +12,7 @@ import com.ufcg.es.healthtrack.model.File;
 import com.ufcg.es.healthtrack.model.dto.ExceptionResponse;
 import com.ufcg.es.healthtrack.model.dto.FileDTO;
 import com.ufcg.es.healthtrack.service.ExameService;
+import com.ufcg.es.healthtrack.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +37,7 @@ public class FileController {
     public void uploadFile(@RequestParam("file") MultipartFile multipartfile, ServletRequest servletRequest, RedirectAttributes ra) throws IOException {
 
         try {
-            exameService.uploadFile(multipartfile, getAuthorizationHeader(servletRequest));
+            exameService.uploadFile(multipartfile, Util.getAuthorizationHeader(servletRequest));
             ra.addFlashAttribute("message", "The File has Been Uploaded Succesfully");
         } catch (SecurityException | IOException e) {
 
@@ -48,7 +49,7 @@ public class FileController {
     public void downloadFile(@PathVariable long id, HttpServletResponse response, ServletRequest servletRequest) throws Exception {
 
         try {
-            File file = exameService.downloadFile(id, getAuthorizationHeader(servletRequest));
+            File file = exameService.downloadFile(id, Util.getAuthorizationHeader(servletRequest));
 
             response.setContentType("application/octet-stream");
             String headerKey = "Content-Disposition";
@@ -67,14 +68,10 @@ public class FileController {
     @GetMapping("/listar")
     public ResponseEntity listar(ServletRequest servletRequest) {
         try {
-            List<FileDTO> exames = this.exameService.listarTodosExamesPDFs(getAuthorizationHeader(servletRequest));
+            List<FileDTO> exames = this.exameService.listarTodosExamesPDFs(Util.getAuthorizationHeader(servletRequest));
             return new ResponseEntity<>(exames, HttpStatus.OK);
         } catch (HealthTrackSystemException e) {
             return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.BAD_REQUEST);
         }
-    }
-
-    private String getAuthorizationHeader(ServletRequest servletRequest) {
-        return ((HttpServletRequest) servletRequest).getHeader("Authorization");
     }
 }

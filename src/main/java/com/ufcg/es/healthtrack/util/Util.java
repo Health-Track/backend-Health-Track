@@ -1,5 +1,8 @@
 package com.ufcg.es.healthtrack.util;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+
 public class Util {
 
     private static final String EMAIL_REGEX = "^([a-zA-Z0-9\\._]+)@([a-zA-Z0-9])+.([a-z]+)(.[a-z]+)?$";
@@ -28,5 +31,9 @@ public class Util {
         if(!senha.matches(SENHA_REGEX)) {
             throw new IllegalArgumentException("A senha informada não é válida, informe uma senha com pelo menos 8 dígitos.");
         }
+    }
+
+    public static String getAuthorizationHeader(ServletRequest servletRequest) {
+        return ((HttpServletRequest) servletRequest).getHeader("Authorization");
     }
 }

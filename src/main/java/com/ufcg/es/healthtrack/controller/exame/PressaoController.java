@@ -5,6 +5,7 @@ import com.ufcg.es.healthtrack.model.dto.ExceptionResponse;
 import com.ufcg.es.healthtrack.model.dto.pressao.PressaoDTO;
 import com.ufcg.es.healthtrack.model.dto.pressao.PressaoVisualizarDTO;
 import com.ufcg.es.healthtrack.service.ExameService;
+import com.ufcg.es.healthtrack.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class PressaoController {
     @PostMapping
     public ResponseEntity cadastrar(@RequestBody PressaoDTO pressaoDTO, ServletRequest servletRequest) {
         try {
-            this.exameService.cadastrarExamePressao(pressaoDTO, getAuthorizationHeader(servletRequest));
+            this.exameService.cadastrarExamePressao(pressaoDTO, Util.getAuthorizationHeader(servletRequest));
             return new ResponseEntity(HttpStatus.CREATED);
         }
         catch (HealthTrackSystemException e) {
@@ -35,7 +36,7 @@ public class PressaoController {
     @GetMapping("/listar")
     public ResponseEntity listarTodos(ServletRequest servletRequest) {
         try {
-            return new ResponseEntity<List<PressaoVisualizarDTO>>(this.exameService.listaTodosExamesPressao(getAuthorizationHeader(servletRequest)),HttpStatus.OK);
+            return new ResponseEntity<List<PressaoVisualizarDTO>>(this.exameService.listaTodosExamesPressao(Util.getAuthorizationHeader(servletRequest)),HttpStatus.OK);
         }
         catch (HealthTrackSystemException e) {
             return new ResponseEntity(new ExceptionResponse(e.getMessage()), HttpStatus.BAD_REQUEST);
@@ -45,15 +46,11 @@ public class PressaoController {
     @GetMapping("/{id}")
     public ResponseEntity visualizarExame(@PathVariable long id, ServletRequest servletRequest) {
         try {
-            PressaoVisualizarDTO exame = this.exameService.visualizarExamePressao(id,getAuthorizationHeader(servletRequest));
+            PressaoVisualizarDTO exame = this.exameService.visualizarExamePressao(id, Util.getAuthorizationHeader(servletRequest));
             return new ResponseEntity<>(exame,HttpStatus.OK);
         }
         catch (HealthTrackSystemException e) {
             return new ResponseEntity(new ExceptionResponse(e.getMessage()), HttpStatus.BAD_REQUEST);
         }
-    }
-
-    private String getAuthorizationHeader(ServletRequest servletRequest) {
-        return ((HttpServletRequest) servletRequest).getHeader("Authorization");
     }
 }

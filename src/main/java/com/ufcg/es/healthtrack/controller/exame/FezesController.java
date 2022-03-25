@@ -8,6 +8,7 @@ import com.ufcg.es.healthtrack.model.dto.fezes.FezesDTO;
 import com.ufcg.es.healthtrack.model.dto.fezes.FezesVisualizarDTO;
 import com.ufcg.es.healthtrack.repository.FezesRepository;
 import com.ufcg.es.healthtrack.service.ExameService;
+import com.ufcg.es.healthtrack.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,7 @@ public class FezesController {
     @PostMapping
     public ResponseEntity createExameFezes(@RequestBody FezesDTO exameDTO, ServletRequest servletRequest) {
           try {
-            this.exameService.cadastrarExameFezes(exameDTO, getAuthorizationHeader(servletRequest));
+            this.exameService.cadastrarExameFezes(exameDTO, Util.getAuthorizationHeader(servletRequest));
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (HealthTrackSystemException e) {
             return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.BAD_REQUEST);
@@ -40,7 +41,7 @@ public class FezesController {
     @GetMapping(value = "/listar")
     public ResponseEntity listExameFezes(ServletRequest servletRequest) {
         try {
-            List<FezesVisualizarDTO> exames = this.exameService.listarTodosExamesFezes(getAuthorizationHeader(servletRequest));
+            List<FezesVisualizarDTO> exames = this.exameService.listarTodosExamesFezes(Util.getAuthorizationHeader(servletRequest));
             return new ResponseEntity<>(exames, HttpStatus.OK);
         } catch (HealthTrackSystemException e) {
             return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.BAD_REQUEST);
@@ -50,15 +51,10 @@ public class FezesController {
     @GetMapping("/{id}")
     public ResponseEntity visualizarExame(@PathVariable long id, ServletRequest servletRequest) {
         try {
-            FezesVisualizarDTO exame = this.exameService.visualizarExameFezes(id, getAuthorizationHeader(servletRequest));
+            FezesVisualizarDTO exame = this.exameService.visualizarExameFezes(id, Util.getAuthorizationHeader(servletRequest));
             return new ResponseEntity(exame, HttpStatus.OK);
         } catch (HealthTrackSystemException e) {
             return new ResponseEntity(new ExceptionResponse(e.getMessage()),HttpStatus.BAD_REQUEST);
         }
     }
-
-    private String getAuthorizationHeader(ServletRequest servletRequest) {
-        return ((HttpServletRequest) servletRequest).getHeader("Authorization");
-    }
-
 }
