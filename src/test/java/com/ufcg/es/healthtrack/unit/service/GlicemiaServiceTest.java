@@ -59,7 +59,9 @@ public class GlicemiaServiceTest {
 
     @Test
     public void adicionaMedicaoDeveLancarUmaExcesaoQuandoJaExistirUmaMedicaoNaMesmaData() {
-        when(glicemiaRepository.findByDataMedicaoAndUsuario(glicemia.getDataMedicao(),usuario)).thenReturn(Optional.of(glicemia));
+        List<Glicemia> list = new ArrayList<>();
+        list.add(glicemia);
+        when(glicemiaRepository.findAllByUsuario(usuario)).thenReturn(list);
         assertThrows(HealthTrackSystemException.class, () -> glicemiaService.adicionarMedicao(glicemiaDTO,usuario));
     }
 

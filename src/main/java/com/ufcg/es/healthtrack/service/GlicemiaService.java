@@ -53,9 +53,11 @@ public class GlicemiaService {
     }
 
     private void verificaDataMedicao(LocalDateTime dataMedicao, Usuario usuario){
-        Optional<Glicemia> optGlicemia = this.repository.findByDataMedicaoAndUsuario(dataMedicao,usuario);
-        if(optGlicemia.isPresent()) {
-            throw new HealthTrackSystemException("Já existe uma medição de glicemia no momento informado");
+        for (Glicemia g: this.repository.findAllByUsuario(usuario)) {
+            if ((g.getDataMedicao().minusNanos(g.getDataMedicao().getNano()))
+                    .isEqual(dataMedicao.minusNanos(dataMedicao.getNano()))){
+                throw new HealthTrackSystemException("Já existe uma medição de glicemia no momento informado");
+            }
         }
     }
 
