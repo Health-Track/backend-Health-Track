@@ -70,6 +70,7 @@ public class UsuarioService {
     }
 
     public void alterarSenhaUsuario(AlterarSenhaDTO dto, String emailUsuarioLogado) {
+        Util.verificaFormatoSenha(dto.getSenhaNova());
         Usuario usuario = getUsuario(emailUsuarioLogado);
         if(!usuario.verificaSenha(dto.getSenhaAntiga())){
             throw new HealthTrackSystemException("Senha invalida");

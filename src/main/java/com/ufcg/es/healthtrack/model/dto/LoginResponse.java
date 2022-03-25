@@ -4,6 +4,9 @@ public class LoginResponse {
 
     private String token;
 
+    public LoginResponse() {
+    }
+
     public LoginResponse(String jwtToken) {
         this.token = jwtToken;
     }
