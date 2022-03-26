@@ -33,7 +33,7 @@ public class FileController {
 
 
     @PostMapping(value = "/upload")
-    public void uploadFile(@RequestParam("file") MultipartFile multipartfile, ServletRequest servletRequest, RedirectAttributes ra) throws IOException {
+    public void uploadFile(@RequestParam("file") MultipartFile multipartfile, ServletRequest servletRequest, RedirectAttributes ra) {
 
         try {
             exameService.uploadFile(multipartfile, Util.getAuthorizationHeader(servletRequest));
