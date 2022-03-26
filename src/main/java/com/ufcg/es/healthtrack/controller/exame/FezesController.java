@@ -6,7 +6,6 @@ import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.model.dto.ExceptionResponse;
 import com.ufcg.es.healthtrack.model.dto.fezes.FezesDTO;
 import com.ufcg.es.healthtrack.model.dto.fezes.FezesVisualizarDTO;
-import com.ufcg.es.healthtrack.repository.FezesRepository;
 import com.ufcg.es.healthtrack.service.ExameService;
 import com.ufcg.es.healthtrack.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
 
 
 @RestController
