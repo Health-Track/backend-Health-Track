@@ -6,6 +6,7 @@ import com.ufcg.es.healthtrack.model.dto.fezes.FezesDTO;
 import com.ufcg.es.healthtrack.model.exame.ExameFezes;
 import com.ufcg.es.healthtrack.repository.FezesRepository;
 import com.ufcg.es.healthtrack.service.ExameFezesService;
+import com.ufcg.es.healthtrack.unit.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,8 +28,6 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ExameFezesServiceTest {
-
-    private final int UMA_CHAMADA = 1;
 
     @Mock
     private FezesRepository fezesRepository;
@@ -54,26 +53,26 @@ public class ExameFezesServiceTest {
     @Test
     public void adicionaExameDeveExecutarSaveApenasUmVez() {
         exameFezesService.adicionaExame(fezesDTO,usuario);
-        verify(fezesRepository, times(UMA_CHAMADA)).save(any());
+        verify(fezesRepository, times(TestUtil.UMA_CHAMADA)).save(any());
     }
 
     @Test
     public void listarTodosPorUsuarioDeveExecutarFindAllByUsuarioApenasUmVez() {
         when(fezesRepository.findAllByUsuario(usuario)).thenReturn(exameFezesList);
         exameFezesService.listarTodosPorUsuario(usuario);
-        verify(fezesRepository, times(UMA_CHAMADA)).findAllByUsuario(any());
+        verify(fezesRepository, times(TestUtil.UMA_CHAMADA)).findAllByUsuario(any());
     }
 
     @Test
     public void visualizarExameDeveExecutarFindByIdAndUsuarioApenasUmVez() {
         when(fezesRepository.findByIdAndUsuario(1L,usuario)).thenReturn(Optional.of(exameFezes));
         exameFezesService.visualizarExame(1L,usuario);
-        verify(fezesRepository, times(UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
+        verify(fezesRepository, times(TestUtil.UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
     }
     @Test
     public void visualizarExameDeveLancarUmaExcesaoQuandoOExameNaoExistir() {
         when(fezesRepository.findByIdAndUsuario(1L,usuario)).thenReturn(Optional.empty());
         assertThrows(HealthTrackSystemException.class, () -> exameFezesService.visualizarExame(1L,usuario));
-        verify(fezesRepository, times(UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
+        verify(fezesRepository, times(TestUtil.UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
     }
 }

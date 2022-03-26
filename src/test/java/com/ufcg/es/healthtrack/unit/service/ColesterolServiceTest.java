@@ -6,6 +6,7 @@ import com.ufcg.es.healthtrack.model.dto.colesterol.ColesterolDTO;
 import com.ufcg.es.healthtrack.model.exame.Colesterol;
 import com.ufcg.es.healthtrack.repository.ColesterolRepository;
 import com.ufcg.es.healthtrack.service.ColesterolService;
+import com.ufcg.es.healthtrack.unit.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,8 +28,6 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ColesterolServiceTest {
-
-    private final int UMA_CHAMADA = 1;
 
     @Mock
     private ColesterolRepository colesterolRepository;
@@ -54,27 +53,27 @@ public class ColesterolServiceTest {
     @Test
     public void adicionaExameDeveExecutarSaveApenasUmVez() {
         colesterolService.adicionarDados(colesterolDTO,usuario);
-        verify(colesterolRepository, times(UMA_CHAMADA)).save(any());
+        verify(colesterolRepository, times(TestUtil.UMA_CHAMADA)).save(any());
     }
 
     @Test
     public void listarTodosPorUsuarioDeveExecutarFindAllByUsuarioApenasUmVez() {
         when(colesterolRepository.findAllByUsuario(usuario)).thenReturn(colesterolList);
         colesterolService.listarTodosPorUsuario(usuario);
-        verify(colesterolRepository, times(UMA_CHAMADA)).findAllByUsuario(any());
+        verify(colesterolRepository, times(TestUtil.UMA_CHAMADA)).findAllByUsuario(any());
     }
 
     @Test
     public void visualizarExameDeveExecutarFindByIdAndUsuarioApenasUmVez() {
         when(colesterolRepository.findByIdAndUsuario(1L,usuario)).thenReturn(Optional.of(colesterol));
         colesterolService.visualizarExame(1L,usuario);
-        verify(colesterolRepository, times(UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
+        verify(colesterolRepository, times(TestUtil.UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
     }
     @Test
     public void visualizarExameDeveLancarUmaExcesaoQuandoOExameNaoExistir() {
         when(colesterolRepository.findByIdAndUsuario(1L,usuario)).thenReturn(Optional.empty());
         assertThrows(HealthTrackSystemException.class, () -> colesterolService.visualizarExame(1L,usuario));
-        verify(colesterolRepository, times(UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
+        verify(colesterolRepository, times(TestUtil.UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
     }
 
 

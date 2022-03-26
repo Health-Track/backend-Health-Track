@@ -6,6 +6,7 @@ import com.ufcg.es.healthtrack.model.dto.hemograma.HemogramaDTO;
 import com.ufcg.es.healthtrack.model.exame.Hemograma;
 import com.ufcg.es.healthtrack.repository.HemogramaRepository;
 import com.ufcg.es.healthtrack.service.HemogramaService;
+import com.ufcg.es.healthtrack.unit.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,8 +27,6 @@ import static org.mockito.Mockito.times;
 
 @RunWith(MockitoJUnitRunner.class)
 public class HemogramaServiceTest {
-
-    private final int UMA_CHAMADA = 1;
 
     @Mock
     private HemogramaRepository hemogramaRepository;
@@ -53,27 +52,27 @@ public class HemogramaServiceTest {
     @Test
     public void adicionaExameDeveExecutarSaveApenasUmVez() {
         hemogramaService.adicionarExame(hemogramaDTO,usuario);
-        verify(hemogramaRepository, times(UMA_CHAMADA)).save(any());
+        verify(hemogramaRepository, times(TestUtil.UMA_CHAMADA)).save(any());
     }
 
     @Test
     public void listarTodosPorUsuarioDeveExecutarFindAllByUsuarioApenasUmVez() {
         when(hemogramaRepository.findAllByUsuario(usuario)).thenReturn(hemogramaList);
         hemogramaService.listarTodosPorUsuario(usuario);
-        verify(hemogramaRepository, times(UMA_CHAMADA)).findAllByUsuario(any());
+        verify(hemogramaRepository, times(TestUtil.UMA_CHAMADA)).findAllByUsuario(any());
     }
 
     @Test
     public void visualizarExameDeveExecutarFindByIdAndUsuarioApenasUmVez() {
         when(hemogramaRepository.findByIdAndUsuario(1L,usuario)).thenReturn(Optional.of(hemograma));
         hemogramaService.visualizarExame(1L,usuario);
-        verify(hemogramaRepository, times(UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
+        verify(hemogramaRepository, times(TestUtil.UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
     }
     @Test
     public void visualizarExameDeveLancarUmaExcesaoQuandoOExameNaoExistir() {
         when(hemogramaRepository.findByIdAndUsuario(1L,usuario)).thenReturn(Optional.empty());
         assertThrows(HealthTrackSystemException.class, () -> hemogramaService.visualizarExame(1L,usuario));
-        verify(hemogramaRepository, times(UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
+        verify(hemogramaRepository, times(TestUtil.UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
     }
 
 

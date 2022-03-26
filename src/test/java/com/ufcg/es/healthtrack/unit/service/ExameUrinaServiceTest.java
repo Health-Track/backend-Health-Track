@@ -6,6 +6,7 @@ import com.ufcg.es.healthtrack.model.dto.urina.UrinaDTO;
 import com.ufcg.es.healthtrack.model.exame.ExameUrina;
 import com.ufcg.es.healthtrack.repository.UrinaRepository;
 import com.ufcg.es.healthtrack.service.ExameUrinaService;
+import com.ufcg.es.healthtrack.unit.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,8 +26,6 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ExameUrinaServiceTest {
-
-    private final int UMA_CHAMADA = 1;
 
     @Mock
     private UrinaRepository urinaRepository;
@@ -52,27 +51,27 @@ public class ExameUrinaServiceTest {
     @Test
     public void adicionaExameDeveExecutarSaveApenasUmVez() {
         exameUrinaService.adicionaExame(urinaDTO,usuario);
-        verify(urinaRepository, times(UMA_CHAMADA)).save(any());
+        verify(urinaRepository, times(TestUtil.UMA_CHAMADA)).save(any());
     }
 
     @Test
     public void listarTodosPorUsuarioDeveExecutarFindAllByUsuarioApenasUmVez() {
         when(urinaRepository.findAllByUsuario(usuario)).thenReturn(exameUrinaList);
         exameUrinaService.listarTodosPorUsuario(usuario);
-        verify(urinaRepository, times(UMA_CHAMADA)).findAllByUsuario(any());
+        verify(urinaRepository, times(TestUtil.UMA_CHAMADA)).findAllByUsuario(any());
     }
 
     @Test
     public void visualizarExameDeveExecutarFindByIdAndUsuarioApenasUmVez() {
         when(urinaRepository.findByIdAndUsuario(1L,usuario)).thenReturn(Optional.of(exameUrina));
         exameUrinaService.visualizarExame(1L,usuario);
-        verify(urinaRepository, times(UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
+        verify(urinaRepository, times(TestUtil.UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
     }
     @Test
     public void visualizarExameDeveLancarUmaExcesaoQuandoOExameNaoExistir() {
         when(urinaRepository.findByIdAndUsuario(1L,usuario)).thenReturn(Optional.empty());
         assertThrows(HealthTrackSystemException.class, () -> exameUrinaService.visualizarExame(1L,usuario));
-        verify(urinaRepository, times(UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
+        verify(urinaRepository, times(TestUtil.UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
     }
 
 

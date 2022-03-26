@@ -6,6 +6,7 @@ import com.ufcg.es.healthtrack.model.dto.glicemia.GlicemiaDTO;
 import com.ufcg.es.healthtrack.model.exame.Glicemia;
 import com.ufcg.es.healthtrack.repository.GlicemiaRepository;
 import com.ufcg.es.healthtrack.service.GlicemiaService;
+import com.ufcg.es.healthtrack.unit.TestUtil;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,8 +26,6 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GlicemiaServiceTest {
-
-    private final int UMA_CHAMADA = 1;
 
     @Mock
     private GlicemiaRepository glicemiaRepository;
@@ -52,7 +51,7 @@ public class GlicemiaServiceTest {
     @Test
     public void adicionaMedicaoDeveExecutarSaveApenasUmVez() {
         glicemiaService.adicionarMedicao(glicemiaDTO,usuario);
-        verify(glicemiaRepository, times(UMA_CHAMADA)).save(any());
+        verify(glicemiaRepository, times(TestUtil.UMA_CHAMADA)).save(any());
     }
 
     @Test
@@ -67,20 +66,20 @@ public class GlicemiaServiceTest {
     public void listarTodosPorUsuarioDeveExecutarFindAllByUsuarioApenasUmVez() {
         when(glicemiaRepository.findAllByUsuario(usuario)).thenReturn(glicemiaList);
         glicemiaService.listarTodosPorUsuario(usuario);
-        verify(glicemiaRepository, times(UMA_CHAMADA)).findAllByUsuario(any());
+        verify(glicemiaRepository, times(TestUtil.UMA_CHAMADA)).findAllByUsuario(any());
     }
 
     @Test
     public void visualizarExameDeveExecutarFindByIdAndUsuarioApenasUmVez() {
         when(glicemiaRepository.findByIdAndUsuario(1L,usuario)).thenReturn(Optional.of(glicemia));
         glicemiaService.getExamePorId(1L,usuario);
-        verify(glicemiaRepository, times(UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
+        verify(glicemiaRepository, times(TestUtil.UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
     }
     @Test
     public void visualizarExameDeveLancarUmaExcesaoQuandoOExameNaoExistir() {
         when(glicemiaRepository.findByIdAndUsuario(1L,usuario)).thenReturn(Optional.empty());
         assertThrows(HealthTrackSystemException.class, () -> glicemiaService.getExamePorId(1L,usuario));
-        verify(glicemiaRepository, times(UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
+        verify(glicemiaRepository, times(TestUtil.UMA_CHAMADA)).findByIdAndUsuario(anyLong(),any());
     }
 
 
