@@ -40,4 +40,8 @@ public class Usuario {
     public int hashCode() {
         return Objects.hash(email);
     }
+
+    public String getEmail() {
+        return email;
+    }
 }

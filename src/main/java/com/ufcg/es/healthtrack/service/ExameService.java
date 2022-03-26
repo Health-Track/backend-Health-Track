@@ -137,7 +137,7 @@ public class ExameService {
 
     public File downloadFile(long id, String authorizationHeader) {
         Usuario usuario = getUsuarioLogado(authorizationHeader);
-        return this.fileService.getFile(id);
+        return this.fileService.getFile(id, usuario);
     }
 
     public PressaoVisualizarDTO visualizarExamePressao(long id, String authorizationHeader) {

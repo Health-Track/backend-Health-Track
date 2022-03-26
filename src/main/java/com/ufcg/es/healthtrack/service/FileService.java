@@ -1,5 +1,6 @@
 package com.ufcg.es.healthtrack.service;
 
+import com.ufcg.es.healthtrack.exception.HealthTrackSystemException;
 import com.ufcg.es.healthtrack.model.File;
 import com.ufcg.es.healthtrack.model.Usuario;
 import com.ufcg.es.healthtrack.model.dto.FileDTO;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FileService {
@@ -31,8 +33,15 @@ public class FileService {
         fileRepository.save(file);
     }
 
-    public File getFile(long id) {
-        return fileRepository.findById(id).get();
+    public File getFile(long id, Usuario usuario) {
+        Optional<File> optFile = fileRepository.findById(id);
+        if (optFile.isPresent()) {
+            File file = optFile.get();
+            if (file.getUser().getEmail().equals(usuario.getEmail())) {
+                return file;
+            }
+        }
+        throw new HealthTrackSystemException("Exame não encontrado");
     }
 
     public List<FileDTO> listarTodosPorUsuario(Usuario usuario) {
