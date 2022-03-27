@@ -49,7 +49,7 @@ public class ExameFezesService {
     }
 
     private FezesVisualizarDTO getFezesVisualizarDTO(ExameFezes exame) {
-        return new FezesVisualizarDTO(exame.getId(), exame.getDescricao(), exame.getDate(), exame.getAspectoGeral(),
+        return new FezesVisualizarDTO(exame.getId(), exame.getDescricao(), exame.getDate().toString(), exame.getAspectoGeral(),
                 exame.getProtozoarios(), exame.getHelmintos(), exame.getMetodo(), exame.getObservacoes());
     }
 }

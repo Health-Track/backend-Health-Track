@@ -25,7 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RestController
-@RequestMapping("exame/pdf")
+@RequestMapping("/exame/pdf")
 public class FileController {
 
     @Autowired

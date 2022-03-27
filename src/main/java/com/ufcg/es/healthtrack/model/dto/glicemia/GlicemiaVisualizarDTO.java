@@ -8,12 +8,12 @@ public class GlicemiaVisualizarDTO {
 
     private int medicao;
 
-    private LocalDateTime dataMedicao;
+    private String data;
 
-    public GlicemiaVisualizarDTO(long id, int medicao, LocalDateTime dataMedicao) {
+    public GlicemiaVisualizarDTO(long id, int medicao, String data) {
         this.id = id;
         this.medicao = medicao;
-        this.dataMedicao = dataMedicao;
+        this.data = data;
     }
 
     public int getMedicao() {
@@ -24,12 +24,12 @@ public class GlicemiaVisualizarDTO {
         this.medicao = medicao;
     }
 
-    public LocalDateTime getDataMedicao() {
-        return dataMedicao;
+    public String getData() {
+        return data;
     }
 
-    public void setDataMedicao(LocalDateTime dataMedicao) {
-        this.dataMedicao = dataMedicao;
+    public void setData(String data) {
+        this.data = data;
     }
 
     public long getId() {

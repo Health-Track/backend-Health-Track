@@ -49,7 +49,7 @@ public class GlicemiaService {
     }
 
     private GlicemiaVisualizarDTO transformaParaVisualizarDTO(Glicemia exame) {
-        return new GlicemiaVisualizarDTO(exame.getId(), exame.getMedicao(), exame.getDataMedicao());
+        return new GlicemiaVisualizarDTO(exame.getId(), exame.getMedicao(), exame.getDataMedicao().toString());
     }
 
     private void verificaDataMedicao(LocalDateTime dataMedicao, Usuario usuario){

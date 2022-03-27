@@ -6,7 +6,7 @@ public class HemogramaVisualizarDTO {
 
     private long id;
     private String descricao;
-    private LocalDateTime date;
+    private String data;
     private double hemoglobina;
     private double hemacrotito;
     private double hematimetria;
@@ -16,10 +16,10 @@ public class HemogramaVisualizarDTO {
     private double concentracaoHemoglobina;
     private double indiceAnisocitose;
 
-    public HemogramaVisualizarDTO(long id, String descricao, LocalDateTime date, double hemoglobina, double hemacrotito, double hematimetria, double reticulocitos, double volumeCorpuscular, double hemoglobinaCorpuscular, double concentracaoHemoglobina, double indiceAnisocitose) {
+    public HemogramaVisualizarDTO(long id, String descricao, String data, double hemoglobina, double hemacrotito, double hematimetria, double reticulocitos, double volumeCorpuscular, double hemoglobinaCorpuscular, double concentracaoHemoglobina, double indiceAnisocitose) {
         this.id = id;
         this.descricao = descricao;
-        this.date = date;
+        this.data = data;
         this.hemoglobina = hemoglobina;
         this.hemacrotito = hemacrotito;
         this.hematimetria = hematimetria;
@@ -38,12 +38,12 @@ public class HemogramaVisualizarDTO {
         this.descricao = descricao;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public String getData() {
+        return data;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setData(String data) {
+        this.data = data;
     }
 
     public double getHemoglobina() {
