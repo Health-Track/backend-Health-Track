@@ -48,6 +48,9 @@ public class UrinaDTO {
         this.outrosElementos = outrosElementos;
     }
 
+    public UrinaDTO() {
+    }
+
     public String getDescricao() {
         return descricao;
     }

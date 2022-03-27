@@ -11,6 +11,9 @@ public class ColesterolVisualizarDTO {
     private int colesterolLDL;
     private double relacaoTotalHDL;
 
+    public ColesterolVisualizarDTO() {
+    }
+
     public ColesterolVisualizarDTO(long id, String data, String descricao, int colesterolTotal, int colesterolHDL, int colesterolNaoHDL, int colesterolLDL, double relacaoTotalHDL) {
         this.id = id;
         this.data = data;

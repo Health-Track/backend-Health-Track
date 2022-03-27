@@ -28,6 +28,9 @@ public class HemogramaDTO {
         this.indiceAnisocitose = indiceAnisocitose;
     }
 
+    public HemogramaDTO() {
+    }
+
     public String getDescricao() {
         return descricao;
     }

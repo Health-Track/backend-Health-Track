@@ -16,6 +16,9 @@ public class GlicemiaVisualizarDTO {
         this.data = data;
     }
 
+    public GlicemiaVisualizarDTO() {
+    }
+
     public int getMedicao() {
         return medicao;
     }

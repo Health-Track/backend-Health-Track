@@ -13,6 +13,9 @@ public class FezesVisualizarDTO {
     private String metodo;
     private String observacoes;
 
+    public FezesVisualizarDTO() {
+    }
+
     public FezesVisualizarDTO(long id, String descricao, String data, String aspectoGeral, String protozoarios, String helmintos, String metodo, String observacoes) {
         this.id = id;
         this.descricao = descricao;

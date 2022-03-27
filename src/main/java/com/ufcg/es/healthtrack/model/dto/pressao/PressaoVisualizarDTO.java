@@ -14,6 +14,9 @@ public class PressaoVisualizarDTO {
         this.observacoes = observacoes;
     }
 
+    public PressaoVisualizarDTO() {
+    }
+
     public long getId() {
         return id;
     }

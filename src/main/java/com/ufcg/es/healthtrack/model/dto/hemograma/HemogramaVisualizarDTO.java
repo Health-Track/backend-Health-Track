@@ -30,6 +30,9 @@ public class HemogramaVisualizarDTO {
         this.indiceAnisocitose = indiceAnisocitose;
     }
 
+    public HemogramaVisualizarDTO() {
+    }
+
     public String getDescricao() {
         return descricao;
     }

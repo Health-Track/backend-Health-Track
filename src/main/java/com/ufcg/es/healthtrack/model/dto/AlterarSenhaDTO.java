@@ -9,6 +9,9 @@ public class AlterarSenhaDTO {
         this.senhaNova = senhaNova;
     }
 
+    public AlterarSenhaDTO() {
+    }
+
     public String getSenhaAntiga() {
         return senhaAntiga;
     }

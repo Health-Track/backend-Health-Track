@@ -12,6 +12,9 @@ public class ColesterolDTO {
     private int colesterolLDL;
     private double relacaoTotalHDL;
 
+    public ColesterolDTO() {
+    }
+
     public ColesterolDTO(String descricao, LocalDateTime dataMedicao, int colesterolTotal,
                          int colesterolHDL, int colesterolNaoHDL, int colesterolLDL, double relacaoTotalHDL) {
         this.descricao = descricao;

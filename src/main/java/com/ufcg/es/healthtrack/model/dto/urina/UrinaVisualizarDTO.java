@@ -54,6 +54,9 @@ public class UrinaVisualizarDTO {
         this.outrosElementos = outrosElementos;
     }
 
+    public UrinaVisualizarDTO() {
+    }
+
     public long getId() {
         return id;
     }
