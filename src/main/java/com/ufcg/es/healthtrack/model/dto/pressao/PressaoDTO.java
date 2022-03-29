@@ -14,6 +14,9 @@ public class PressaoDTO {
         this.observacoes = observacoes;
     }
 
+    public PressaoDTO() {
+    }
+
     public int getSistolica() {
         return sistolica;
     }

@@ -45,7 +45,7 @@ public class ColesterolService {
     }
 
     private ColesterolVisualizarDTO transformaParaDTO(Colesterol exame){
-        return new ColesterolVisualizarDTO(exame.getId(), exame.getDataMedicao(),exame.getDescricao(), exame.getColesterolTotal(),
+        return new ColesterolVisualizarDTO(exame.getId(), exame.getDataMedicao().toString(), exame.getDescricao(), exame.getColesterolTotal(),
                                  exame.getColesterolHDL(), exame.getColesterolNaoHDL(), exame.getColesterolLDL(),
                                  exame.getRelacaoTotalHDL());
     }

@@ -6,17 +6,20 @@ public class FezesVisualizarDTO {
 
     private long id;
     private String descricao;
-    private LocalDateTime date;
+    private String data;
     private String aspectoGeral;
     private String protozoarios;
     private String helmintos;
     private String metodo;
     private String observacoes;
 
-    public FezesVisualizarDTO(long id, String descricao, LocalDateTime date, String aspectoGeral, String protozoarios, String helmintos, String metodo, String observacoes) {
+    public FezesVisualizarDTO() {
+    }
+
+    public FezesVisualizarDTO(long id, String descricao, String data, String aspectoGeral, String protozoarios, String helmintos, String metodo, String observacoes) {
         this.id = id;
         this.descricao = descricao;
-        this.date = date;
+        this.data = data;
         this.aspectoGeral = aspectoGeral;
         this.protozoarios = protozoarios;
         this.helmintos = helmintos;
@@ -32,12 +35,12 @@ public class FezesVisualizarDTO {
         this.descricao = descricao;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public String getData() {
+        return data;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setData(String data) {
+        this.data = data;
     }
 
     public String getAspectoGeral() {

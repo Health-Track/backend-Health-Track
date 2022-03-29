@@ -28,17 +28,17 @@ Feature: Verificando se as funcionalidades do exame de colesterol funcionam corr
     Given Existe um usuário com o email "email14@email.com" cadastrado
     And O usuário com o email "email14@email.com" está logado
     And Existe um exame cadastrado
-    When É tentado visualizar um exame com id "2"
+    When É tentado visualizar um exame com id "8"
     Then A visualização funciona
 
   Scenario: A visualização de um não exame funciona corretamente devido ao exame não existir
     Given Existe um usuário com o email "email15@email.com" cadastrado
     And O usuário com o email "email15@email.com" está logado
-    When É tentado visualizar um exame com id "4"
+    When É tentado visualizar um exame com id "10"
     Then A visualização não funciona
 
   Scenario: A visualização de um não exame funciona corretamente devido usuário não estar logado
     Given Existe um usuário com o email "email16@email.com" cadastrado
     And O usuário com o email "email16@email.com" não está logado
-    When É tentado visualizar um exame com id "4"
+    When É tentado visualizar um exame com id "10"
     Then A visualização não funciona devido ao usuário não estar logado

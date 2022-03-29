@@ -13,6 +13,9 @@ public class GlicemiaDTO {
         this.dataMedicao = dataMedicao;
     }
 
+    public GlicemiaDTO() {
+    }
+
     public int getMedicao() {
         return medicao;
     }

@@ -41,7 +41,7 @@ public class HemogramaService {
     }
 
     private HemogramaVisualizarDTO getHemogramaVisualizarDTO(Hemograma exame) {
-        return new HemogramaVisualizarDTO(exame.getId(), exame.getDescricao(), exame.getDate(),
+        return new HemogramaVisualizarDTO(exame.getId(), exame.getDescricao(), exame.getDate().toString(),
                 exame.getHemoglobina(),exame.getHemacrotito(), exame.getHematimetria(),
                 exame.getReticulocitos(), exame.getVolumeCorpuscular(),
                 exame.getHemoglobinaCorpuscular(), exame.getConcentracaoHemoglobina(),

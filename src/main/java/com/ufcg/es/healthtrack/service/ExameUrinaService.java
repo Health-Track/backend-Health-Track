@@ -41,7 +41,7 @@ public class ExameUrinaService {
     }
 
     private UrinaVisualizarDTO getUrinaVisualizarDTO(ExameUrina exame) {
-        return new UrinaVisualizarDTO(exame.getId(), exame.getDescricao(), exame.getData(), exame.getAspecto(),
+        return new UrinaVisualizarDTO(exame.getId(), exame.getDescricao(), exame.getData().toString(), exame.getAspecto(),
                 exame.getDensidade(), exame.getReacao(), exame.getProteinas(), exame.getCorposCetonicos(), exame.getGlicose(),
                 exame.getBilirrubina(), exame.getUrobilinogenio(), exame.getSangueHb(), exame.getNitrito(),
                 exame.getHemacias(), exame.getLeucocitos(), exame.getCelulasEpiteliais(), exame.getCilindros(),

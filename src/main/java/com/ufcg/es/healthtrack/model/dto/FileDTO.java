@@ -10,6 +10,9 @@ public class FileDTO {
         this.name = name;
     }
 
+    public FileDTO() {
+    }
+
     public long getId() {
         return id;
     }

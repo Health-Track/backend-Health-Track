@@ -6,7 +6,7 @@ public class UrinaVisualizarDTO {
 
     private long id;
     private String descricao;
-    private LocalDateTime data;
+    private String data;
     private String aspecto;
     private double densidade;
     private String reacao;
@@ -26,7 +26,7 @@ public class UrinaVisualizarDTO {
     private String filamentoDeMuco;
     private String outrosElementos;
 
-    public UrinaVisualizarDTO(long id, String descricao, LocalDateTime data, String aspecto, double densidade,
+    public UrinaVisualizarDTO(long id, String descricao, String data, String aspecto, double densidade,
                               String reacao, String proteinas, String corposCetonicos, String glicose,
                               String bilirrubina, String urobilinogenio, String sangueHb, String nitrito,
                               double hemacias, double leucocitos, double celulasEpiteliais, String cilindros,
@@ -54,6 +54,9 @@ public class UrinaVisualizarDTO {
         this.outrosElementos = outrosElementos;
     }
 
+    public UrinaVisualizarDTO() {
+    }
+
     public long getId() {
         return id;
     }
@@ -62,7 +65,7 @@ public class UrinaVisualizarDTO {
         return descricao;
     }
 
-    public LocalDateTime getData() {
+    public String getData() {
         return data;
     }
 

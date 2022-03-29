@@ -12,6 +12,9 @@ public class FezesDTO {
     private String metodo;
     private String observacoes;
 
+    public FezesDTO() {
+    }
+
     public FezesDTO(String descricao, LocalDateTime date, String aspectoGeral, String protozoarios, String helmintos, String metodo, String observacoes) {
         this.descricao = descricao;
         this.date = date;
